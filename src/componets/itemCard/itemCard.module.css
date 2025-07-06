@@ -1,3 +1,7 @@
+.container {
+  color: black;
+  text-decoration: none;
+}
 .container img{
   --img-size: 20rem;
   object-fit: contain;
