@@ -17,9 +17,9 @@ export default function Sidebar(props) {
       </option>
     );
   }
-  
+
   function handleSelectCategory(e) {
-    submit(e.target.value);
+    submit(`category=${e.target.value}`);
   }
   
   return (

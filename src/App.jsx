@@ -3,12 +3,20 @@ import "./App.css";
 import Navbar from "./componets/navbar/navbar";
 import Sidebar from "./componets/sidebar/sidebar";
 import Footer from "./componets/footer/footer";
-import { useSubmit } from "react-router-dom";
+import { useLoaderData, useSubmit } from "react-router-dom";
+
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  const category = url.searchParams.get("category");
+  return { category };
+}
 
 function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const submit = useSubmit();
+
+  const { category } = useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -30,19 +38,24 @@ function App() {
           }
         }
         const categoriesArray = [...categoriesSet];
-        submit(categoriesArray[0]);
+        submit(`category=${categoriesArray[0]}`);
         setCategories(categoriesArray);
       });
   }, []);
+
+  const filteredProducts = [];
+  for (let i = 0; i < products.length; i++) {
+    if(products[i].category === category) {
+      filteredProducts.push(<p>{products[i].title}</p>)
+    }
+  }
 
   return (
     <>
       <Navbar />
       <div className="main">
         <Sidebar categories={categories} />
-        <div className="content">
-          <p>Hello</p>
-        </div>
+        <div className="content">{filteredProducts}</div>
       </div>
       <Footer />
     </>
