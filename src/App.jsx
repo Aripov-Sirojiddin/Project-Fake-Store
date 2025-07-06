@@ -68,14 +68,14 @@ function App() {
   }
 
   return (
-    <>
+    <div className={styles.flexContainer}>
       <Navbar searchValue={search} />
       <div className={styles.main}>
         <Sidebar categories={categories} />
         <div className={styles.content}>{filteredProducts.length > 0 ? filteredProducts : <p>No products found</p>}</div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
