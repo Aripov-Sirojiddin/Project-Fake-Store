@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import Navbar from "./componets/navbar/navbar";
 import Sidebar from "./componets/sidebar/sidebar";
 import Footer from "./componets/footer/footer";
-import { useLoaderData, useSubmit } from "react-router-dom";
+import { useLoaderData, useLocation, useSubmit } from "react-router-dom";
 import ItemCard from "./componets/itemCard/itemCard";
 import fitsProductConstraints from "./helpers/fitsProductConstraints";
 
@@ -18,6 +18,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const submit = useSubmit();
+  const location = useLocation();
 
   const { category, search } = useLoaderData();
 
@@ -42,7 +43,12 @@ function App() {
           }
         }
         const categoriesArray = [...categoriesSet];
-        submit(`category=${categoriesArray[0]}`);
+
+        const params = new URLSearchParams(location.search);
+        if (!params.has("category")) {
+          params.set("category", categoriesArray[0]);
+        }
+        submit(params);
         setCategories(categoriesArray);
       });
   }, []);
@@ -52,8 +58,7 @@ function App() {
     const productFilter = fitsProductConstraints(products[i]);
 
     if (
-      (category === "all" ||
-      productFilter.fitsCategory(category)) &&
+      (category === "all" || productFilter.fitsCategory(category)) &&
       productFilter.fitsSearch(search)
     ) {
       filteredProducts.push(
