@@ -6,3 +6,7 @@
   min-height: var(--img-size);
   max-height: var(--img-size);
 }
+
+.container:hover{
+  cursor: pointer;
+}

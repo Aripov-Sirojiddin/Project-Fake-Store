@@ -33,6 +33,7 @@ function App() {
         setProducts(data);
 
         const categoriesSet = new Set([]);
+        categoriesSet.add("all");
         for (let i = 0; i < data.length; i++) {
           if (!categoriesSet.has(data[i].category)) {
             categoriesSet.add(data[i].category);
@@ -46,7 +47,7 @@ function App() {
 
   const filteredProducts = [];
   for (let i = 0; i < products.length; i++) {
-    if (products[i].category === category) {
+    if (category === "all" || products[i].category === category) {
       filteredProducts.push(<ItemCard itemProperties={products[i]} />);
     }
   }
