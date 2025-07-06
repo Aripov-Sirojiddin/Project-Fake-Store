@@ -1,15 +1,13 @@
 import {
   Form,
   useLocation,
-  useNavigate,
-  useRevalidator,
   useRouteLoaderData,
   useSubmit,
 } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 
-export default function Navbar({}) {
+export default function Navbar({cart}) {
   const { category, search } = useRouteLoaderData("root");
   const location = useLocation();
   const submit = useSubmit();
@@ -45,6 +43,7 @@ export default function Navbar({}) {
           placeholder="Looking for something specific?"
         />
       </Form>
+      <p>{cart.length} items in cart</p>
     </div>
   );
 }

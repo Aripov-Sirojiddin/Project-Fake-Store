@@ -17,6 +17,11 @@ export async function loader({ request }) {
 function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  let sessionCart = sessionStorage.getItem("incart");
+  sessionCart = sessionCart ? sessionCart.split(",") : [];
+  const [cart, setCart] = useState(sessionCart);
+
   const submit = useSubmit();
   const location = useLocation();
 
@@ -62,17 +67,30 @@ function App() {
       productFilter.fitsSearch(search)
     ) {
       filteredProducts.push(
-        <ItemCard key={products[i].id} itemProperties={products[i]} />
+        <ItemCard
+          key={products[i].id}
+          itemProperties={products[i]}
+          cart={cart}
+          setCart={setCart}
+        />
       );
     }
   }
 
   return (
     <div className={styles.flexContainer}>
-      <Navbar searchValue={search} />
+      <Navbar cart={cart} />
       <div className={styles.main}>
         <Sidebar categories={categories} />
-        <div className={styles.content}>{filteredProducts.length > 0 ? filteredProducts : <p>No products found</p>}</div>
+        <div className={styles.content}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts
+          ) : (
+            <p>
+              No products found with words {search} in the {category} category.
+            </p>
+          )}
+        </div>
       </div>
       <Footer />
     </div>
