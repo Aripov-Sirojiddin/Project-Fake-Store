@@ -7,11 +7,12 @@ import {
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 
-export default function Navbar({cart}) {
+export default function Navbar() {
   const { category, search } = useRouteLoaderData("root");
   const location = useLocation();
   const submit = useSubmit();
-
+  let cart = sessionStorage.getItem("incart");
+  cart = cart ? cart.split(",") : [];
   useEffect(() => {
     document.querySelector("#search").value = search;
   }, [search]);

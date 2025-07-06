@@ -79,7 +79,7 @@ function App() {
 
   return (
     <div className={styles.flexContainer}>
-      <Navbar cart={cart} />
+      <Navbar search={search}/>
       <div className={styles.main}>
         <Sidebar categories={categories} />
         <div className={styles.content}>
