@@ -9,7 +9,8 @@ import ItemCard from "./componets/itemCard/itemCard";
 export async function loader({ request }) {
   const url = new URL(request.url);
   const category = url.searchParams.get("category");
-  return { category };
+  const search = url.searchParams.get("search");
+  return { category, search };
 }
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const submit = useSubmit();
 
-  const { category } = useLoaderData();
+  const { category, search } = useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -48,13 +49,15 @@ function App() {
   const filteredProducts = [];
   for (let i = 0; i < products.length; i++) {
     if (category === "all" || products[i].category === category) {
-      filteredProducts.push(<ItemCard itemProperties={products[i]} />);
+      filteredProducts.push(
+        <ItemCard key={products[i].id} itemProperties={products[i]} />
+      );
     }
   }
 
   return (
     <>
-      <Navbar />
+      <Navbar searchValue={search} />
       <div className={styles.main}>
         <Sidebar categories={categories} />
         <div className={styles.content}>{filteredProducts}</div>

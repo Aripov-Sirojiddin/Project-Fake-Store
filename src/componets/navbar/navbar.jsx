@@ -1,31 +1,45 @@
-import { Form, useLocation, useSubmit } from "react-router-dom";
+import {
+  Form,
+  useLocation,
+  useRouteLoaderData,
+  useSubmit,
+} from "react-router-dom";
 import styles from "./navbar.module.css";
+import { useEffect } from "react";
+
 export default function Navbar({}) {
+  const { category, search } = useRouteLoaderData("root");
   const location = useLocation();
   const submit = useSubmit();
 
-  function handleSearch(e) {
-    const params = new URLSearchParams(location.search);
-    console.log(params);
+  useEffect(() => {
+    document.querySelector("#search").value = search;
+  }, [search]);
 
-    const inputText = e.target.value;
+  let searchValue = "";
+  function handleSearch(e) {
+    e.preventDefault();
+    const params = new URLSearchParams(location.search);
+    const inputText = searchValue;
     if (inputText !== "") {
       params.set("search", inputText);
     } else {
       params.delete("search");
     }
-    
     submit(params);
+  }
+  function handleOnChange(e) {
+    searchValue = e.target.value;
   }
   return (
     <div className={styles.container}>
       <p>Navbar</p>
-      <Form>
+      <Form role="search" onSubmit={handleSearch}>
         <input
           type="text"
           id="search"
           name="search"
-          onChange={handleSearch}
+          onChange={handleOnChange}
           placeholder="Looking for something specific?"
         />
       </Form>
