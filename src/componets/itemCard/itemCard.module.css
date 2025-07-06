@@ -1,0 +1,8 @@
+.container img{
+  --img-size: 20rem;
+  object-fit: contain;
+  min-width: var(--img-size);
+  max-width: var(--img-size);
+  min-height: var(--img-size);
+  max-height: var(--img-size);
+}

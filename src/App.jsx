@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import Navbar from "./componets/navbar/navbar";
 import Sidebar from "./componets/sidebar/sidebar";
 import Footer from "./componets/footer/footer";
 import { useLoaderData, useSubmit } from "react-router-dom";
+import ItemCard from "./componets/itemCard/itemCard";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -45,17 +46,17 @@ function App() {
 
   const filteredProducts = [];
   for (let i = 0; i < products.length; i++) {
-    if(products[i].category === category) {
-      filteredProducts.push(<p>{products[i].title}</p>)
+    if (products[i].category === category) {
+      filteredProducts.push(<ItemCard itemProperties={products[i]} />);
     }
   }
 
   return (
     <>
       <Navbar />
-      <div className="main">
+      <div className={styles.main}>
         <Sidebar categories={categories} />
-        <div className="content">{filteredProducts}</div>
+        <div className={styles.content}>{filteredProducts}</div>
       </div>
       <Footer />
     </>
