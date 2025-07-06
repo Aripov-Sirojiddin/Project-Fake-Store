@@ -1,7 +1,13 @@
-import { Form, useLocation, useSubmit } from "react-router-dom";
+import {
+  Form,
+  useLocation,
+  useRouteLoaderData,
+  useSubmit,
+} from "react-router-dom";
 import styles from "./sidebar.module.css";
 
 export default function Sidebar(props) {
+  const { category, search } = useRouteLoaderData("root");
   const submit = useSubmit();
   const location = useLocation();
 
@@ -25,12 +31,16 @@ export default function Sidebar(props) {
 
     submit(params);
   }
-
   return (
     <div className={styles.container}>
       <div>
         <Form role="set-preferences">
-          <select id="category" name="category" onChange={handleSelectCategory}>
+          <select
+            id="category"
+            name="category"
+            onChange={handleSelectCategory}
+            value={category}
+          >
             {options}
           </select>
         </Form>

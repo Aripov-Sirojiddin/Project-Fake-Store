@@ -38,7 +38,7 @@ function App() {
         const categoriesSet = new Set([]);
         categoriesSet.add("all");
         for (let i = 0; i < data.length; i++) {
-          if (!categoriesSet.has(data[i].category)) {
+          if (!categoriesSet.has("category")) {
             categoriesSet.add(data[i].category);
           }
         }
