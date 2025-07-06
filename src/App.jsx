@@ -5,6 +5,7 @@ import Sidebar from "./componets/sidebar/sidebar";
 import Footer from "./componets/footer/footer";
 import { useLoaderData, useSubmit } from "react-router-dom";
 import ItemCard from "./componets/itemCard/itemCard";
+import fitsProductConstraints from "./helpers/fitsProductConstraints";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -48,7 +49,13 @@ function App() {
 
   const filteredProducts = [];
   for (let i = 0; i < products.length; i++) {
-    if (category === "all" || products[i].category === category) {
+    const productFilter = fitsProductConstraints(products[i]);
+
+    if (
+      (category === "all" ||
+      productFilter.fitsCategory(category)) &&
+      productFilter.fitsSearch(search)
+    ) {
       filteredProducts.push(
         <ItemCard key={products[i].id} itemProperties={products[i]} />
       );

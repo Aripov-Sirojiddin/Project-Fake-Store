@@ -1,8 +1,9 @@
-import { Form, useSubmit } from "react-router-dom";
+import { Form, useLocation, useSubmit } from "react-router-dom";
 import styles from "./sidebar.module.css";
 
 export default function Sidebar(props) {
   const submit = useSubmit();
+  const location = useLocation();
 
   const categories = props.categories
     ? props.categories
@@ -19,9 +20,12 @@ export default function Sidebar(props) {
   }
 
   function handleSelectCategory(e) {
-    submit(`category=${e.target.value}`);
+    const params = new URLSearchParams(location.search);
+    params.set("category", e.target.value);
+
+    submit(params);
   }
-  
+
   return (
     <div className={styles.container}>
       <div>
