@@ -2,7 +2,12 @@ import styles from "./Store.module.css";
 import Sidebar from "../../componets/sidebar/sidebar.jsx";
 import fitsProductConstraints from "../../helpers/fitsProductConstraints.js";
 import { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useOutletContext, useSubmit } from "react-router-dom";
+import {
+  useLoaderData,
+  useLocation,
+  useOutletContext,
+  useSubmit,
+} from "react-router-dom";
 import ProductCard from "../../componets/productCard/productCard.jsx";
 
 export async function loader({ request }) {
@@ -47,7 +52,7 @@ export default function Store() {
         if (!params.has("category")) {
           params.set("category", categoriesArray[0]);
         }
-        submit(params, {replace: true});
+        submit(params, { replace: true });
         setCategories(categoriesArray);
       });
   }, []);
@@ -77,6 +82,8 @@ export default function Store() {
       <div className={styles.content}>
         {filteredProducts.length > 0 ? (
           filteredProducts
+        ) : products.length === 0 ? (
+          <p>Loading...</p>
         ) : (
           <p>
             No products found with words {search} in the {category} category.
