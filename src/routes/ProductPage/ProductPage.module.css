@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+}
+.gap_3rem {
+  gap: 3rem;
+}
+.largeImg{
+  --img-size: 40rem;
+  object-fit: contain;
+  min-width: var(--img-size);
+  max-width: var(--img-size);
+  min-height: var(--img-size);
+  max-height: var(--img-size);
+}
