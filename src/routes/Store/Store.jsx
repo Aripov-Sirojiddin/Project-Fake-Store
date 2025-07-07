@@ -8,17 +8,18 @@ import ItemCard from "../../componets/itemCard/itemCard.jsx";
 export async function loader({ request }) {
   const url = new URL(request.url);
   const category = url.searchParams.get("category");
-  return { category };
+  const search = url.searchParams.get("search");
+  return { category, search };
 }
 
-export default function Store({ search }) {
+export default function Store() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
-  
+
   const submit = useSubmit();
   const location = useLocation();
-  const { category } = useLoaderData();
+  const { category, search } = useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")

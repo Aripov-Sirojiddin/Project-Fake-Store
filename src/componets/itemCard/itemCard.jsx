@@ -34,7 +34,7 @@ export default function ItemCard({ itemProperties, cart, setCart }) {
     });
   }
   function openProduct() {
-    navigate(`product/${itemProperties.id}`, { cart: cart });
+    navigate(`/product/${itemProperties.id}`, { cart: cart });
   }
   return (
     <div>

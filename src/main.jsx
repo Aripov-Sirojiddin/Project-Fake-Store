@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App, { loader as appLoader } from "./App.jsx";
+import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductPage, {
   loader as productLoader,
@@ -12,8 +12,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    id: "root",
-    loader: appLoader,
     children: [
       {
         path: "/store",

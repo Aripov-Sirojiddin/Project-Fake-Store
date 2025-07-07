@@ -1,37 +1,40 @@
 import {
   Form,
   useLocation,
-  useRouteLoaderData,
-  useSubmit,
+  useNavigate,
 } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 
 export default function Navbar() {
-  const { category, search } = useRouteLoaderData("root");
   const location = useLocation();
-  const submit = useSubmit();
-  
+  const navigate = useNavigate();
+
   let cart = sessionStorage.getItem("incart");
   cart = cart ? cart.split(",") : [];
-  useEffect(() => {
-    document.querySelector("#search").value = search;
-  }, [search]);
 
-  let searchValue = "";
+  let search = "";
+  let category = "";
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    document.getElementById("search").value = params.get("search");
+    search = params.get("search");
+    category = params.get("category");
+
+  }, [location]);
+
   function handleSearch(e) {
     e.preventDefault();
-    const params = new URLSearchParams(location.search);
-    const inputText = searchValue;
-    if (inputText !== "") {
-      params.set("search", inputText);
-    } else {
-      params.delete("search");
-    }
-    submit(params);
+    const storeParams =
+      search.length > 0
+        ? `/store/?category=${
+            category ? category : "all"
+          }&search=${search.split(" ").join("+")}`
+        : `/store/?category=${category ? category : "all"}`;
+    navigate(storeParams);
   }
   function handleOnChange(e) {
-    searchValue = e.target.value;
+    search = e.target.value;
   }
   return (
     <div className={styles.container}>
