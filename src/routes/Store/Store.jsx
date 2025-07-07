@@ -47,7 +47,7 @@ export default function Store() {
         if (!params.has("category")) {
           params.set("category", categoriesArray[0]);
         }
-        submit(params);
+        submit(params, {replace: true});
         setCategories(categoriesArray);
       });
   }, []);

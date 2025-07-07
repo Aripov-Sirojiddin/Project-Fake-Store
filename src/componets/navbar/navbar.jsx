@@ -26,11 +26,11 @@ export default function Navbar({ cart }) {
     e.preventDefault();
     const storeParams =
       search.length > 0
-        ? `/store/?category=${category ? category : "all"}&search=${search
+        ? `/store/?category=${category ? category.split(" ").join("+") : "all"}&search=${search
             .split(" ")
             .join("+")}`
         : `/store/?category=${category ? category : "all"}`;
-    navigate(storeParams);
+    navigate(storeParams, {replace: true});
   }
   function handleOnChange(e) {
     search = e.target.value;
