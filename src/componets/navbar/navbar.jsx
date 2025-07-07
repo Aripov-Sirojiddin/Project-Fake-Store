@@ -8,8 +8,7 @@ export default function Navbar({ cart }) {
 
   let itemsInCartCount = 0;
   if (cart) {
-    itemsInCartCount = cart.length;
-  } else {
+    itemsInCartCount = Object.keys(cart).length;
   }
 
   let search = "";
