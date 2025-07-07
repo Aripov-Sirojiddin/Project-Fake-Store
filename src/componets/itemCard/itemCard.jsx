@@ -1,23 +1,20 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./itemCard.module.css";
-import { useEffect, useState } from "react";
 
 export default function ItemCard({ itemProperties, cart, setCart }) {
   const navigate = useNavigate();
-
+  console.log(cart)
   let sessionData = sessionStorage.getItem("incart");
   sessionData = sessionData ? sessionData.split(",") : [];
 
-  const isInCart =
-    sessionData.includes(`${itemProperties.id}`) ||
-    cart.includes(itemProperties.id);
+  const isInCart =  cart ? cart.includes(`${itemProperties.id}`) : false;
 
   function addToCart() {
     sessionData.push(itemProperties.id);
     sessionStorage.setItem("incart", sessionData.join(","));
     setCart((oldCart) => {
       const newCart = [...oldCart];
-      newCart.push(itemProperties.id);
+      newCart.push(`${itemProperties.id}`);
       return newCart;
     });
   }

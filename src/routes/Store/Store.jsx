@@ -2,7 +2,7 @@ import styles from "./Store.module.css";
 import Sidebar from "../../componets/sidebar/sidebar.jsx";
 import fitsProductConstraints from "../../helpers/fitsProductConstraints.js";
 import { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useSubmit } from "react-router-dom";
+import { useLoaderData, useLocation, useOutletContext, useSubmit } from "react-router-dom";
 import ItemCard from "../../componets/itemCard/itemCard.jsx";
 
 export async function loader({ request }) {
@@ -13,9 +13,9 @@ export async function loader({ request }) {
 }
 
 export default function Store() {
+  const { cart, setCart } = useOutletContext();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [cart, setCart] = useState([]);
 
   const submit = useSubmit();
   const location = useLocation();

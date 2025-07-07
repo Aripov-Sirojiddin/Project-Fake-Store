@@ -1,17 +1,17 @@
-import {
-  Form,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Form, useLocation, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 
-export default function Navbar() {
+export default function Navbar({ cart }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  let cart = sessionStorage.getItem("incart");
-  cart = cart ? cart.split(",") : [];
+  let itemsInCartCount = 0;
+  if (cart) {
+    itemsInCartCount = cart.length;
+  } else {
+    
+  }
 
   let search = "";
   let category = "";
@@ -20,16 +20,15 @@ export default function Navbar() {
     document.getElementById("search").value = params.get("search");
     search = params.get("search");
     category = params.get("category");
-
   }, [location]);
 
   function handleSearch(e) {
     e.preventDefault();
     const storeParams =
       search.length > 0
-        ? `/store/?category=${
-            category ? category : "all"
-          }&search=${search.split(" ").join("+")}`
+        ? `/store/?category=${category ? category : "all"}&search=${search
+            .split(" ")
+            .join("+")}`
         : `/store/?category=${category ? category : "all"}`;
     navigate(storeParams);
   }
@@ -48,7 +47,7 @@ export default function Navbar() {
           placeholder="Looking for something specific?"
         />
       </Form>
-      <p>{cart.length} items in cart</p>
+      <p>{itemsInCartCount} items in cart</p>
     </div>
   );
 }
