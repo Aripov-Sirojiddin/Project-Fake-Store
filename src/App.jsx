@@ -5,10 +5,10 @@ import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
   useEffect(()=>{
-    const savedCart = sessionStorage.getItem("incart");
-    setCart(savedCart ? savedCart.split(",") : []);
+    const savedCart = JSON.parse(sessionStorage.getItem("incart"));
+    setCart(savedCart);
   },[])
   return (
     <div className={styles.flexContainer}>

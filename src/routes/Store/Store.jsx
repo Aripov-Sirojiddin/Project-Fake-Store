@@ -3,7 +3,7 @@ import Sidebar from "../../componets/sidebar/sidebar.jsx";
 import fitsProductConstraints from "../../helpers/fitsProductConstraints.js";
 import { useEffect, useState } from "react";
 import { useLoaderData, useLocation, useOutletContext, useSubmit } from "react-router-dom";
-import ItemCard from "../../componets/itemCard/itemCard.jsx";
+import ProductCard from "../../componets/productCard/productCard.jsx";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -61,9 +61,9 @@ export default function Store() {
       productFilter.fitsSearch(search)
     ) {
       filteredProducts.push(
-        <ItemCard
+        <ProductCard
           key={products[i].id}
-          itemProperties={products[i]}
+          productData={products[i]}
           cart={cart}
           setCart={setCart}
         />

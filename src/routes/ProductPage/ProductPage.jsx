@@ -1,5 +1,6 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import styles from "./ProductPage.module.css";
+import AddRemoveItemBtn from "../../componets/addRemoveItemBtn/addRemoveItemBtn";
 
 export async function loader({ params }) {
   const productData = await fetch(
@@ -20,33 +21,7 @@ export async function loader({ params }) {
 
 export default function ProductPage({}) {
   const { cart, setCart } = useOutletContext();
-
   const { productData } = useLoaderData();
-  const isInCart = cart ? cart.includes(`${productData.id}`) : false;
-  let sessionData = sessionStorage.getItem("incart");
-  sessionData = sessionData ? sessionData.split(",") : [];
-  
-  function addToCart() {
-    sessionData.push(productData.id);
-    sessionStorage.setItem("incart", sessionData.join(","));
-    setCart((oldCart) => {
-      const newCart = [...oldCart];
-      newCart.push(`${productData.id}`);
-      return newCart;
-    });
-  }
-  function removeFromCart() {
-    sessionData = sessionData.filter((id) => {
-      return id != productData.id;
-    });
-    sessionStorage.setItem("incart", sessionData.join(","));
-    setCart((oldCart) => {
-      const newCart = oldCart.filter(
-        (productInCart) => productInCart != productData.id
-      );
-      return newCart;
-    });
-  }
 
   return (
     <div className={styles.container}>
@@ -59,11 +34,11 @@ export default function ProductPage({}) {
         </div>
         <h3>Description</h3>
         <p>{productData.description}</p>
-        {isInCart ? (
-          <button onClick={removeFromCart}>Remove from cart</button>
-        ) : (
-          <button onClick={addToCart}>Add to cart</button>
-        )}
+        <AddRemoveItemBtn
+          productData={productData}
+          cart={cart}
+          setCart={setCart}
+        />
       </div>
     </div>
   );

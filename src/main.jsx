@@ -8,6 +8,7 @@ import ProductPage, {
 } from "./routes/ProductPage/ProductPage.jsx";
 import Store, { loader as storeLoader } from "./routes/Store/Store.jsx";
 import LandingPage from "./routes/LandingPage/LandingPage.jsx";
+import Cart from "./routes/Cart/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/product/:productId",
         element: <ProductPage />,
         loader: productLoader,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
