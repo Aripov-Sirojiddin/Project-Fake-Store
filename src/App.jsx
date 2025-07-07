@@ -13,6 +13,7 @@ function App() {
   return (
     <div className={styles.flexContainer}>
       <Navbar cart={cart} />
+      
       <Outlet context={{cart, setCart}} />
       <Footer />
     </div>

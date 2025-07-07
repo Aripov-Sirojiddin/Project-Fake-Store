@@ -7,12 +7,17 @@ import ProductPage, {
   loader as productLoader,
 } from "./routes/ProductPage/ProductPage.jsx";
 import Store, { loader as storeLoader } from "./routes/Store/Store.jsx";
+import LandingPage from "./routes/LandingPage/LandingPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <LandingPage />,
+      },
       {
         path: "/store",
         element: <Store />,
