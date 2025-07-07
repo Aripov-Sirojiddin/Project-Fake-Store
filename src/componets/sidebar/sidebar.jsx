@@ -7,7 +7,7 @@ import {
 import styles from "./sidebar.module.css";
 
 export default function Sidebar(props) {
-  const { category, search } = useRouteLoaderData("root");
+  const { category, search } = useRouteLoaderData("store");
   const submit = useSubmit();
   const location = useLocation();
 
