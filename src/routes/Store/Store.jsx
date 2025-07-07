@@ -86,7 +86,7 @@ export default function Store() {
           <p>Loading...</p>
         ) : (
           <p>
-            No products found with words {search} in the {category} category.
+            No products found with words {search} in the "{category}" category.
           </p>
         )}
       </div>
