@@ -3,7 +3,6 @@ import styles from "./itemCard.module.css";
 
 export default function ItemCard({ itemProperties, cart, setCart }) {
   const navigate = useNavigate();
-  console.log(cart)
   let sessionData = sessionStorage.getItem("incart");
   sessionData = sessionData ? sessionData.split(",") : [];
 

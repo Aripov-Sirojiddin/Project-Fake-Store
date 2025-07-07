@@ -1,4 +1,4 @@
-import { Form, useLocation, useNavigate } from "react-router-dom";
+import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 
@@ -10,7 +10,6 @@ export default function Navbar({ cart }) {
   if (cart) {
     itemsInCartCount = cart.length;
   } else {
-    
   }
 
   let search = "";
@@ -26,18 +25,29 @@ export default function Navbar({ cart }) {
     e.preventDefault();
     const storeParams =
       search.length > 0
-        ? `/store/?category=${category ? category.split(" ").join("+") : "all"}&search=${search
-            .split(" ")
-            .join("+")}`
+        ? `/store/?category=${
+            category ? category.split(" ").join("+") : "all"
+          }&search=${search.split(" ").join("+")}`
         : `/store/?category=${category ? category : "all"}`;
-    navigate(storeParams, {replace: true});
+    navigate(storeParams, { replace: true });
   }
   function handleOnChange(e) {
     search = e.target.value;
   }
   return (
     <div className={styles.container}>
-      <p>Navbar</p>
+      <Link
+        to={location.pathname === "/" ? location : "/"}
+        className={location.pathname === "/" ? styles.selected : ""}
+      >
+        Home
+      </Link>
+      <Link
+        to={location.pathname === "/store" ? location : "/store"}
+        className={location.pathname === "/store" ? styles.selected : ""}
+      >
+        Products
+      </Link>
       <Form role="search" onSubmit={handleSearch}>
         <input
           type="text"
@@ -47,7 +57,7 @@ export default function Navbar({ cart }) {
           placeholder="Looking for something specific?"
         />
       </Form>
-      <p>{itemsInCartCount} items in cart</p>
+      <Link to="/cart">{itemsInCartCount} items in cart</Link>
     </div>
   );
 }
