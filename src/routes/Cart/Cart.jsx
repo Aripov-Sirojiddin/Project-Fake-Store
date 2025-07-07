@@ -4,13 +4,18 @@ import { useEffect, useState } from "react";
 
 export default function Cart({}) {
   const { cart, setCart } = useOutletContext();
-  const { products, setProducts } = useState([]);
-
-  useEffect(() => {
-    
-  }, []);
-
-  const productsView = products
+  const productsView = [];
+  for (const productId in cart) {
+    const product = cart[productId];
+    productsView.push(
+      <ProductCard
+        key={product.id}
+        productData={product}
+        cart={cart}
+        setCart={setCart}
+      />
+    );
+  }
 
   return <div>{productsView}</div>;
 }
