@@ -6,16 +6,19 @@ import {
 } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import { useEffect, useState } from "react";
+import RangeSlider from "react-range-slider-input";
+import "react-range-slider-input/dist/style.css";
 
 export default function Sidebar(props) {
   const { category, search, minRating, maxRating } =
     useRouteLoaderData("store");
   const [myMinRating, setMinRating] = useState(minRating ? minRating : 0);
   const [myMaxRating, setMaxRating] = useState(maxRating ? maxRating : 5);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
 
   const submit = useSubmit();
   const location = useLocation();
-  
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params && params.get("minRating")) {
@@ -49,6 +52,13 @@ export default function Sidebar(props) {
     submit(params);
   }
 
+  function handleSelectPriceRange(e) {
+    const params = new URLSearchParams(location.search);
+    params.set("minPrice", e[0]);
+    params.set("maxPrice", e[1]);
+    setPriceRange(e);
+    submit(params);
+  }
   const categories = props.categories
     ? props.categories
     : ["men's clothing", "jewelry", "electronics", "women's clothing"];
@@ -106,6 +116,20 @@ export default function Sidebar(props) {
         <h3 tabIndex="0">Max Rating</h3>
         <div className={`${styles.rating} ${styles.horizontalContainer}`}>
           {myMaxRatingStars}
+        </div>
+
+        <h3 tabIndex="0">Price Range</h3>
+        <div className={styles.horizontalContainer}>
+          <p className={styles.smaller}>${priceRange[0]}</p>
+          <RangeSlider
+            className={styles.rangeSlider}
+            min={0}
+            max={1000}
+            step={1}
+            defaultValue={[0, 1000]}
+            onInput={handleSelectPriceRange}
+          />
+          <p className={styles.smaller}>${priceRange[1]}</p>
         </div>
       </div>
     </div>
