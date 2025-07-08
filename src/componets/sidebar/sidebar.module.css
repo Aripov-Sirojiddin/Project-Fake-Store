@@ -1,2 +1,6 @@
 .container {
+  padding: 2rem;
+}
+.container * {
+  font-size: large;
 }
