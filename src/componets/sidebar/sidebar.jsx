@@ -51,6 +51,7 @@ export default function Sidebar(props) {
   const minRatingStars = [1, 2, 3, 4, 5].map((rating) => {
     return (
       <p
+        key={`min-${rating}`}
         tabIndex="0"
         onClick={() => setRating(rating, minRating, setMinRating)}
       >
@@ -62,6 +63,7 @@ export default function Sidebar(props) {
   const maxRatingStars = [1, 2, 3, 4, 5].map((rating) => {
     return (
       <p
+        key={`max-${rating}`}
         tabIndex="0"
         onClick={() => setRating(rating, maxRating, setMaxRating)}
       >
