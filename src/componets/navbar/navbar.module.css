@@ -49,11 +49,11 @@
   font-size: medium;
   padding: 0.5vh 0.6vw 0.5vh;
   border-radius: 1vw;
-  font-size: 1vw;
+  font-size: 2ex;
   font-weight: bold;
   margin: 0;
   width: fit-content;
-  transform: translate(3vw, 3vh);
+  transform: translate(3rem, 1rem);
 }
 .itemCountZero {
   background: rgb(0, 0, 0);

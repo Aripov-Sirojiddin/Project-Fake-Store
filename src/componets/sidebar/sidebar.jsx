@@ -33,6 +33,9 @@ export default function Sidebar(props) {
     } else {
       setMinRating(rating);
     }
+    const params = new URLSearchParams(location.search);
+    params.set("minRating", rating);
+    submit(params);
   }
   function handleSelectCategory(e) {
     const params = new URLSearchParams(location.search);

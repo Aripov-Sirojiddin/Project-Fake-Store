@@ -1,11 +1,17 @@
-import { Form, Link, useLocation, useNavigate } from "react-router-dom";
+import {
+  Form,
+  Link,
+  useLocation,
+  useNavigate,
+  useSubmit,
+} from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 import bagIcon from "../../../public/bag.svg";
 
 export default function Navbar({ cart }) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const submit = useSubmit();
 
   let itemsInCartCount = 0;
   if (cart) {
@@ -31,13 +37,13 @@ export default function Navbar({ cart }) {
 
   function handleSearch(e) {
     e.preventDefault();
-    const storeParams =
-      search.length > 0
-        ? `/store/?category=${
-            category ? category.split(" ").join("+") : "all"
-          }&search=${search.split(" ").join("+")}`
-        : `/store/?category=${category ? category : "all"}`;
-    navigate(storeParams, { replace: true });
+    const params = new URLSearchParams(location.search);
+    if (search.length > 0) {
+      params.set("search", search.split(" ").join("+"));
+    } else {
+      params.delete("search");
+    }
+    submit(params, {action: "/store"});
   }
   function handleOnChange(e) {
     search = e.target.value;
@@ -75,7 +81,10 @@ export default function Navbar({ cart }) {
           </Form>
         </div>
 
-        <Link to={location.pathname === "/cart" ? location : "/cart"} className={styles.bagIconDiv}>
+        <Link
+          to={location.pathname === "/cart" ? location : "/cart"}
+          className={styles.bagIconDiv}
+        >
           <div>
             <p
               className={`${styles.itemCount} ${
