@@ -1,5 +1,6 @@
 export default function AddRemoveItemBtn({ productData, cart, setCart }) {
   let itemsInCart = JSON.parse(sessionStorage.getItem("incart"));
+  itemsInCart = itemsInCart ? itemsInCart : {};
   itemsInCart = Object.keys(itemsInCart).length > 0 ? itemsInCart : {};
 
   const isInCart = cart ? cart[productData.id] : false;
@@ -17,6 +18,7 @@ export default function AddRemoveItemBtn({ productData, cart, setCart }) {
     delete itemsInCart[productData.id];
     sessionStorage.setItem("incart", JSON.stringify(itemsInCart));
     setCart((oldCart) => {
+      console.log(oldCart);
       const newCart = {
         ...oldCart,
       };

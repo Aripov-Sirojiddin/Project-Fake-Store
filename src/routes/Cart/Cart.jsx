@@ -1,12 +1,13 @@
 import { useOutletContext } from "react-router-dom";
 import ProductCard from "../../componets/productCard/productCard";
-import { useEffect, useState } from "react";
 
 export default function Cart({}) {
   const { cart, setCart } = useOutletContext();
   const productsView = [];
+  let totalPrice = 0;
   for (const productId in cart) {
     const product = cart[productId];
+    totalPrice += product.price
     productsView.push(
       <ProductCard
         key={product.id}
@@ -17,5 +18,5 @@ export default function Cart({}) {
     );
   }
 
-  return <div>{productsView}</div>;
+  return <div>{productsView}<p>Total: ${totalPrice}</p></div>;
 }
