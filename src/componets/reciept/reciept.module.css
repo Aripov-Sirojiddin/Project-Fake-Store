@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5vw;
+  gap: 3vw;
 }
 
 .container {
@@ -15,7 +15,33 @@
   box-shadow: 5px 10px 10px 5px rgb(241, 218, 247);
   animation: boxShadowAnimation 10s infinite;
 }
-
+.container p {
+  margin-block: 1rem;
+}
+.container h2 {
+  background: linear-gradient(
+    -45deg,
+    cyan,
+    rgb(230, 129, 250),
+    rgb(80, 240, 255)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 300%;
+  animation: gradientAnimation 10s infinite;
+}
+.container hr {
+  height: 2px;
+  border: none;
+  background: linear-gradient(
+    -45deg,
+    cyan,
+    rgb(230, 129, 250),
+    rgb(80, 240, 255)
+  );
+  background-size: 300% 300%;
+  animation: gradientAnimation 10s infinite;
+}
 .button {
   color: white;
   background: linear-gradient(
@@ -31,8 +57,8 @@
   padding-block: 1rem;
   border-radius: 1rem;
   background-size: 300% 300%;
-  animation: buttonAnimation 10s infinite;
-  transition: transform 0.3s ease-in-out;
+  animation: gradientAnimation 10s infinite;
+  transition: transform 0.2s ease-in-out;
 }
 
 .button:hover {
@@ -49,11 +75,11 @@
   75% {
     box-shadow: 5px 5px 5px 5px rgb(237, 212, 255);
   }
-  100%{
+  100% {
     box-shadow: 5px 5px 5px 5px rgb(195, 238, 255);
   }
 }
-@keyframes buttonAnimation {
+@keyframes gradientAnimation {
   0% {
     background-position: 0% 25%;
   }

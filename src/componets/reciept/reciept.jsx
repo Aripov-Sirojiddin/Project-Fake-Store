@@ -3,7 +3,7 @@ import styles from "./reciept.module.css";
 export default function Reciept({ className, totalPrice }) {
   return (
     <div className={`${className} ${styles.container}`}>
-      <h3 style={{textAlign: "center"}}>Cart Overview</h3>
+      <h2 style={{textAlign: "center"}}>Cart Overview</h2>
       <div className={styles.horizontalContainer}>
         <p>Products total </p> <p>${totalPrice}</p>
       </div>
