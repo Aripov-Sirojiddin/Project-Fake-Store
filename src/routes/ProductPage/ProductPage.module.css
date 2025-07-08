@@ -6,6 +6,9 @@
   font-size: xx-large;
   gap: 3rem;
 }
+.ratingPrice p {
+  margin: 0;
+}
 .largeImg{
   --img-size: 40rem;
   object-fit: contain;
