@@ -11,8 +11,8 @@ export default function fitsProductConstraints(product) {
       product.description.toLowerCase().includes(searchParams.toLowerCase())
     );
   }
-  function fitsRating(minRating) {
-    return Math.round(product.rating.rate) >= minRating;
+  function fitsRating(minRating = 0, maxRating = 5) {
+    return minRating < Math.round(product.rating.rate) &&  Math.round(product.rating.rate) <= maxRating;
   }
   return {
     fitsCategory,

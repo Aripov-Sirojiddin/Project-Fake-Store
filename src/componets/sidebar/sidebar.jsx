@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function Sidebar(props) {
   const { category, search } = useRouteLoaderData("store");
   const [minRating, setMinRating] = useState(0);
-  const [maxRating, setMaxRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(5);
 
   const submit = useSubmit();
   const location = useLocation();

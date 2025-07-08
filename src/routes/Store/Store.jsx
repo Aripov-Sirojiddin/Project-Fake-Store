@@ -15,6 +15,7 @@ export async function loader({ request }) {
   const category = url.searchParams.get("category");
   const search = url.searchParams.get("search");
   const minRating = url.searchParams.get("minRating");
+  const maxRating = url.searchParams.get("maxRating");
   return { category, search, minRating };
 }
 
@@ -25,7 +26,7 @@ export default function Store() {
 
   const submit = useSubmit();
   const location = useLocation();
-  const { category, search, minRating } = useLoaderData();
+  const { category, search, minRating, maxRating } = useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -65,7 +66,7 @@ export default function Store() {
     if (
       (category === "all" || productFilter.fitsCategory(category)) &&
       productFilter.fitsSearch(search) &&
-      productFilter.fitsRating(minRating)
+      productFilter.fitsRating(minRating, maxRating)
     ) {
       filteredProducts.push(
         <ProductCard
