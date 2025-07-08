@@ -27,6 +27,7 @@
     rgb(230, 129, 250),
     rgb(80, 240, 255)
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 300% 300%;
