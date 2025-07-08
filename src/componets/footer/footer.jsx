@@ -24,7 +24,7 @@ export default function Footer({}) {
             <p>Testimonials</p>
           </div>
         </div>
-        <p>© Copyright 2025 -Not a real company</p>
+        <p>© Copyright 2025 - Not a real company LLC</p>
       </div>
     </>
   );

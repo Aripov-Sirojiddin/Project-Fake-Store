@@ -5,30 +5,30 @@ import {
   useSubmit,
 } from "react-router-dom";
 import styles from "./sidebar.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Sidebar(props) {
-  const { category, search } = useRouteLoaderData("store");
-  const [minRating, setMinRating] = useState(0);
-  const [maxRating, setMaxRating] = useState(5);
+  const { category, search, minRating, maxRating } =
+    useRouteLoaderData("store");
+  const [myMinRating, setMinRating] = useState(minRating ? minRating : 0);
+  const [myMaxRating, setMaxRating] = useState(maxRating ? maxRating : 5);
 
   const submit = useSubmit();
   const location = useLocation();
-
-  const categories = props.categories
-    ? props.categories
-    : ["men's clothing", "jewelry", "electronics", "women's clothing"];
-
-  const options = [];
-
-  for (let i = 0; i < categories.length; i++) {
-    options.push(
-      <option key={categories[i]} value={categories[i]}>
-        {categories[i]}
-      </option>
-    );
-  }
-
+  
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params && params.get("minRating")) {
+      setMinRating(params.get("minRating"));
+    } else {
+      setMinRating(0);
+    }
+    if (params && params.get("maxRating")) {
+      setMaxRating(params.get("maxRating"));
+    } else {
+      setMaxRating(5);
+    }
+  }, [location]);
   function setRating(rating, currentRating, setRating) {
     const minOrMax = setRating == setMinRating ? "minRating" : "maxRating";
     const params = new URLSearchParams(location.search);
@@ -48,26 +48,40 @@ export default function Sidebar(props) {
     params.set("category", e.target.value);
     submit(params);
   }
-  const minRatingStars = [1, 2, 3, 4, 5].map((rating) => {
+
+  const categories = props.categories
+    ? props.categories
+    : ["men's clothing", "jewelry", "electronics", "women's clothing"];
+  const options = [];
+
+  for (let i = 0; i < categories.length; i++) {
+    options.push(
+      <option key={categories[i]} value={categories[i]}>
+        {categories[i]}
+      </option>
+    );
+  }
+
+  const myMinRatingStars = [1, 2, 3, 4, 5].map((rating) => {
     return (
       <p
         key={`min-${rating}`}
         tabIndex="0"
-        onClick={() => setRating(rating, minRating, setMinRating)}
+        onClick={() => setRating(rating, myMinRating, setMinRating)}
       >
-        {rating <= minRating ? "★" : "☆"}
+        {rating <= myMinRating ? "★" : "☆"}
       </p>
     );
   });
 
-  const maxRatingStars = [1, 2, 3, 4, 5].map((rating) => {
+  const myMaxRatingStars = [1, 2, 3, 4, 5].map((rating) => {
     return (
       <p
         key={`max-${rating}`}
         tabIndex="0"
-        onClick={() => setRating(rating, maxRating, setMaxRating)}
+        onClick={() => setRating(rating, myMaxRating, setMaxRating)}
       >
-        {rating <= maxRating ? "★" : "☆"}
+        {rating <= myMaxRating ? "★" : "☆"}
       </p>
     );
   });
@@ -87,11 +101,11 @@ export default function Sidebar(props) {
         </Form>
         <h3 tabIndex="0">Min Rating</h3>
         <div className={`${styles.rating} ${styles.horizontalContainer}`}>
-          {minRatingStars}
+          {myMinRatingStars}
         </div>
         <h3 tabIndex="0">Max Rating</h3>
         <div className={`${styles.rating} ${styles.horizontalContainer}`}>
-          {maxRatingStars}
+          {myMaxRatingStars}
         </div>
       </div>
     </div>
