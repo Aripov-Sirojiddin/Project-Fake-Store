@@ -10,27 +10,42 @@ import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
 export default function Sidebar(props) {
-  const { category, search, minRating, maxRating } =
+  const { category, search, minRating, maxRating, minPrice, maxPrice } =
     useRouteLoaderData("store");
   const [myMinRating, setMinRating] = useState(minRating ? minRating : 0);
   const [myMaxRating, setMaxRating] = useState(maxRating ? maxRating : 5);
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([
+    minPrice ? minPrice : 0,
+    maxPrice ? maxPrice : 1000,
+  ]);
 
   const submit = useSubmit();
   const location = useLocation();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    if (params && params.get("minRating")) {
+    if (!params) {
+      return;
+    }
+    if (params.get("minRating")) {
       setMinRating(params.get("minRating"));
     } else {
       setMinRating(0);
     }
-    if (params && params.get("maxRating")) {
+    if (params.get("maxRating")) {
       setMaxRating(params.get("maxRating"));
     } else {
       setMaxRating(5);
     }
+    const newPriceRange = [0, 1000];
+    if (params.get("minPrice")) {
+      newPriceRange[0] = params.get("minPrice");
+    }
+    if (params.get("maxPrice")) {
+      newPriceRange[1g] = params.get("maxPrice");
+    }
+    setPriceRange(newPriceRange);
+
   }, [location]);
   function setRating(rating, currentRating, setRating) {
     const minOrMax = setRating == setMinRating ? "minRating" : "maxRating";
@@ -53,10 +68,13 @@ export default function Sidebar(props) {
   }
 
   function handleSelectPriceRange(e) {
-    const params = new URLSearchParams(location.search);
-    params.set("minPrice", e[0]);
-    params.set("maxPrice", e[1]);
     setPriceRange(e);
+  }
+
+  function updateLink() {
+    const params = new URLSearchParams(location.search);
+    params.set("minPrice", priceRange[0]);
+    params.set("maxPrice", priceRange[1]);
     submit(params);
   }
   const categories = props.categories
@@ -126,8 +144,10 @@ export default function Sidebar(props) {
             min={0}
             max={1000}
             step={1}
+            value={priceRange}
             defaultValue={[0, 1000]}
             onInput={handleSelectPriceRange}
+            onThumbDragEnd={updateLink}
           />
           <p className={styles.smaller}>${priceRange[1]}</p>
         </div>
