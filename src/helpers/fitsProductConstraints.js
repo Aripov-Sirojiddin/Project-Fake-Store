@@ -11,7 +11,10 @@ export default function fitsProductConstraints(product) {
       product.description.toLowerCase().includes(searchParams.toLowerCase())
     );
   }
-  function fitsRating(minRating = 0, maxRating = 5) {
+  function fitsRating(givenMinRating = 0, givenMaxRating = 5) {
+    const minRating = givenMinRating ? givenMinRating : 0;
+    const maxRating = givenMaxRating ? givenMaxRating : 5;
+
     if (minRating === maxRating) {
       return Math.round(product.rating.rate) == minRating;
     } else if (minRating < maxRating) {
@@ -24,7 +27,10 @@ export default function fitsProductConstraints(product) {
     }
   }
 
-  function fitsPriceRange(minPrice = 0, maxPrice = 1000) {
+  function fitsPriceRange(givenMinPrice = 0, givenMaxPrice = 1000) {
+    const minPrice = givenMinPrice ? givenMinPrice : 0;
+    const maxPrice = givenMaxPrice ? givenMaxPrice : 1000;
+    
     return minPrice < product.price && product.price < maxPrice;
   }
   return {

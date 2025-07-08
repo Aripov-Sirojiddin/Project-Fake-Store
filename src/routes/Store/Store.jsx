@@ -28,7 +28,8 @@ export default function Store() {
 
   const submit = useSubmit();
   const location = useLocation();
-  const { category, search, minRating, maxRating, minPrice, maxPrice } = useLoaderData();
+  const { category, search, minRating, maxRating, minPrice, maxPrice } =
+    useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -68,10 +69,7 @@ export default function Store() {
     if (
       (category === "all" || productFilter.fitsCategory(category)) &&
       productFilter.fitsSearch(search) &&
-      productFilter.fitsRating(
-        minRating ? minRating : undefined,
-        maxRating ? maxRating : undefined
-      ) &&
+      productFilter.fitsRating(minRating, maxRating) &&
       productFilter.fitsPriceRange(minPrice, maxPrice)
     ) {
       filteredProducts.push(
