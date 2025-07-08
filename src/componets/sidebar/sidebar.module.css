@@ -1,5 +1,8 @@
 .container {
   padding: 2rem;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
 }
 .container * {
   font-size: large;
@@ -15,7 +18,7 @@
   margin: 0;
   font-size: xx-large;
 }
-.rating:hover{
+.rating:hover {
   cursor: pointer;
   user-select: none;
 }
