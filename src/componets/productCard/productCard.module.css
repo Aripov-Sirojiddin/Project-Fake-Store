@@ -1,16 +1,40 @@
 .container {
   color: black;
   text-decoration: none;
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 32rem;
+  box-shadow: 5px 5px 5px 5px rgb(229, 229, 229);
 }
-.container img{
+.container .productImg{
   --img-size: 20rem;
   object-fit: contain;
   min-width: var(--img-size);
   max-width: var(--img-size);
   min-height: var(--img-size);
   max-height: var(--img-size);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+.container .title {
+  font-size: large;
+}
+.container .title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.container .productImg:hover {
+  cursor: pointer;
+  filter: brightness(0.7);
+  background: rgb(251, 251, 251);
 }
 
-.container:hover{
-  cursor: pointer;
+.addRemoveBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.horizontalContainer {
+  display: flex;
+  justify-content: space-between;
 }

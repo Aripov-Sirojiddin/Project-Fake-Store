@@ -1,3 +1,7 @@
+import addIcon from "../../../public/addtobag.svg";
+import removeIcon from "../../../public/removefrombag.svg";
+import styles from "./addRemoveItemBtn.module.css";
+
 export default function AddRemoveItemBtn({ productData, cart, setCart }) {
   let itemsInCart = JSON.parse(sessionStorage.getItem("incart"));
   itemsInCart = itemsInCart ? itemsInCart : {};
@@ -18,7 +22,6 @@ export default function AddRemoveItemBtn({ productData, cart, setCart }) {
     delete itemsInCart[productData.id];
     sessionStorage.setItem("incart", JSON.stringify(itemsInCart));
     setCart((oldCart) => {
-      console.log(oldCart);
       const newCart = {
         ...oldCart,
       };
@@ -27,12 +30,16 @@ export default function AddRemoveItemBtn({ productData, cart, setCart }) {
     });
   }
   return (
-    <>
+    <div>
       {isInCart ? (
-        <button onClick={removeFromCart}>Remove from cart</button>
+        <img
+          src={removeIcon}
+          className={styles.iconSize}
+          onClick={removeFromCart}
+        />
       ) : (
-        <button onClick={addToCart}>Add to cart</button>
+        <img src={addIcon} className={styles.iconSize} onClick={addToCart} />
       )}
-    </>
+    </div>
   );
 }

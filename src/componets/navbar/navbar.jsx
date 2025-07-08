@@ -1,6 +1,7 @@
 import { Form, Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
+import bagIcon from "../../../public/bag.svg";
 
 export default function Navbar({ cart }) {
   const location = useLocation();
@@ -20,6 +21,14 @@ export default function Navbar({ cart }) {
     category = params.get("category");
   }, [location]);
 
+  function handleOnFocus(e) {
+    e.target.placeholder = "Looking for something specific?";
+  }
+
+  function handleOnBlur(e) {
+    e.target.placeholder = "Search...";
+  }
+
   function handleSearch(e) {
     e.preventDefault();
     const storeParams =
@@ -34,29 +43,56 @@ export default function Navbar({ cart }) {
     search = e.target.value;
   }
   return (
-    <div className={styles.container}>
-      <Link
-        to={location.pathname === "/" ? location : "/"}
-        className={location.pathname === "/" ? styles.selected : ""}
-      >
-        Home
-      </Link>
-      <Link
-        to={location.pathname === "/store" ? location : "/store"}
-        className={location.pathname === "/store" ? styles.selected : ""}
-      >
-        Products
-      </Link>
-      <Form role="search" onSubmit={handleSearch}>
-        <input
-          type="text"
-          id="search"
-          name="search"
-          onChange={handleOnChange}
-          placeholder="Looking for something specific?"
-        />
-      </Form>
-      <Link to="/cart">{itemsInCartCount} items in cart</Link>
+    <div className={`${styles.container} ${styles.gradientBackground}`}>
+      <div className={styles.container}>
+        <Link
+          to={location.pathname === "/" ? location : "/"}
+          className={`${styles.title} ${
+            location.pathname === "/" ? styles.selected : ""
+          }`}
+        >
+          <h1>Fake Store</h1>
+        </Link>
+        <Link
+          to={location.pathname === "/store" ? location : "/store"}
+          className={location.pathname === "/store" ? styles.selected : ""}
+        >
+          <h2>Our Products</h2>
+        </Link>
+      </div>
+      <div className={styles.container}>
+        <div>
+          <Form role="search" onSubmit={handleSearch}>
+            <input
+              type="text"
+              id="search"
+              name="search"
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
+              onChange={handleOnChange}
+              placeholder="Search..."
+            />
+          </Form>
+        </div>
+
+        <Link to={location.pathname === "/cart" ? location : "/cart"} className={styles.bagIconDiv}>
+          <div>
+            <p
+              className={`${styles.itemCount} ${
+                itemsInCartCount === 0 ? styles.itemCountZero : ""
+              }`}
+            >
+              {itemsInCartCount}
+            </p>
+
+            <img
+              src={bagIcon}
+              className={styles.bagIcon}
+              alt="image icon of a bag"
+            />
+          </div>
+        </Link>
+      </div>
     </div>
   );
 }
