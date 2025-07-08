@@ -2,3 +2,11 @@
   display: flex;
   justify-content: space-between;
 }
+.container {
+  padding: 1rem 4rem 1rem;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
