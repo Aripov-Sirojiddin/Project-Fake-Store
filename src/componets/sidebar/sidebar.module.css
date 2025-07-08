@@ -4,3 +4,16 @@
 .container * {
   font-size: large;
 }
+
+.horizontalContainer {
+  display: flex;
+}
+
+.rating * {
+  margin: 0;
+  font-size: xx-large;
+}
+.rating:hover{
+  cursor: pointer;
+  user-select: none;
+}

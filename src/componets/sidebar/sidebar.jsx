@@ -5,9 +5,12 @@ import {
   useSubmit,
 } from "react-router-dom";
 import styles from "./sidebar.module.css";
+import { useState } from "react";
 
 export default function Sidebar(props) {
   const { category, search } = useRouteLoaderData("store");
+  const [minRating, setMinRating] = useState(0);
+
   const submit = useSubmit();
   const location = useLocation();
 
@@ -24,18 +27,31 @@ export default function Sidebar(props) {
       </option>
     );
   }
-
+  function setRating(rating) {
+    if (minRating === rating) {
+      setMinRating(rating - 1);
+    } else {
+      setMinRating(rating);
+    }
+  }
   function handleSelectCategory(e) {
     const params = new URLSearchParams(location.search);
     params.set("category", e.target.value);
-
     submit(params);
   }
+  const ratingStars = [1, 2, 3, 4, 5].map((rating) => {
+    return (
+      <p tabIndex="0" onClick={() => setRating(rating)}>
+        {rating <= minRating ? "★" : "☆"}
+      </p>
+    );
+  });
   return (
     <div className={styles.container}>
       <div>
         <Form role="set-preferences">
           <select
+            tabIndex="0"
             id="category"
             name="category"
             onChange={handleSelectCategory}
@@ -44,6 +60,9 @@ export default function Sidebar(props) {
             {options}
           </select>
         </Form>
+        <div className={`${styles.rating} ${styles.horizontalContainer}`}>
+          {ratingStars}
+        </div>
       </div>
     </div>
   );

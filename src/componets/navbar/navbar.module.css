@@ -1,8 +1,6 @@
 .title {
   background: black;
   padding-inline: 2vw;
-  padding-block: 0;
-  margin: 0;
 }
 
 .gradientBackground {
@@ -67,7 +65,8 @@
 }
 .bagIcon {
   fill: white;
-  max-width: 4vw;
+  max-width: 6ex;
+  margin: 0;
 }
 
 .bagIconDiv {
