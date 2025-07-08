@@ -11,9 +11,12 @@ export default function fitsProductConstraints(product) {
       product.description.toLowerCase().includes(searchParams.toLowerCase())
     );
   }
-
+  function fitsRating(minRating) {
+    return Math.round(product.rating.rate) >= minRating;
+  }
   return {
     fitsCategory,
     fitsSearch,
+    fitsRating,
   };
 }
