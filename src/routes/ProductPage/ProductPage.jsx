@@ -1,6 +1,7 @@
 import { useLoaderData, useOutletContext } from "react-router-dom";
 import styles from "./ProductPage.module.css";
 import AddRemoveItemBtn from "../../componets/addRemoveItemBtn/addRemoveItemBtn";
+import getStars from "../../helpers/getStars.js";
 
 export async function loader({ params }) {
   const productData = await fetch(
@@ -28,17 +29,30 @@ export default function ProductPage({}) {
       <img src={productData.image} className={styles.largeImg} />
       <div>
         <h1>{productData.title}</h1>
-        <div className={`${styles.container} ${styles.gap_3rem}`}>
-          <p>Rating {productData.rating.rate}</p>
-          <p>${productData.price}</p>
+        <div className={`${styles.container} ${styles.ratingPrice}`}>
+          <p
+            tabIndex="0"
+            aria-current={`Rating ${productData.rating.rate}`}
+          >
+            {productData.rating.rate}
+            <span className={styles.stars}>
+              {getStars(productData.rating.rate)}
+            </span>
+          </p>
+          <p
+            tabIndex="0"
+            aria-current={`Price ${productData.price}`}
+          >
+            ${productData.price}
+          </p>
+          <AddRemoveItemBtn
+            productData={productData}
+            cart={cart}
+            setCart={setCart}
+          />
         </div>
-        <h3>Description</h3>
-        <p>{productData.description}</p>
-        <AddRemoveItemBtn
-          productData={productData}
-          cart={cart}
-          setCart={setCart}
-        />
+        <h3 tabIndex="0">Description</h3>
+        <p tabIndex="0" style={{fontSize: "x-large"}}>{productData.description}</p>
       </div>
     </div>
   );

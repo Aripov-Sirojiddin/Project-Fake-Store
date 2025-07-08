@@ -1,7 +1,9 @@
 .container {
   display: flex;
 }
-.gap_3rem {
+.ratingPrice {
+  align-items: center;
+  font-size: xx-large;
   gap: 3rem;
 }
 .largeImg{
