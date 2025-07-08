@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [cart, setCart] = useState({});
+
   useEffect(() => {
     const savedCart = JSON.parse(sessionStorage.getItem("incart"));
     setCart(savedCart);

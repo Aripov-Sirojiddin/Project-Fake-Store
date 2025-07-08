@@ -30,16 +30,22 @@ export default function AddRemoveItemBtn({ productData, cart, setCart }) {
     });
   }
   return (
-    <div>
+    <>
       {isInCart ? (
         <img
+          tabIndex="0"
           src={removeIcon}
           className={styles.iconSize}
           onClick={removeFromCart}
         />
       ) : (
-        <img src={addIcon} className={styles.iconSize} onClick={addToCart} />
+        <img
+          tabIndex="0"
+          src={addIcon}
+          className={styles.iconSize}
+          onClick={addToCart}
+        />
       )}
-    </div>
+    </>
   );
 }
