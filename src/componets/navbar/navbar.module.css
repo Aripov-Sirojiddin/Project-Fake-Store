@@ -73,6 +73,14 @@
   margin-inline-end: 3rem;
 }
 
+.sticky {
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  align-self: flex-start;
+}
+
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 25%;

@@ -92,7 +92,7 @@ export default function Store() {
         ) : products.length === 0 ? (
           <p>Loading...</p>
         ) : (
-          <p>
+          <p tabIndex="0">
             No products found. Try adjusting your filters/product
             specifications.
           </p>

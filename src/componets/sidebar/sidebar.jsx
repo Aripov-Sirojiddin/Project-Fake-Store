@@ -113,7 +113,7 @@ export default function Sidebar(props) {
     );
   });
   return (
-    <div className={styles.container}>
+    <div id="filters" className={styles.container}>
       <div>
         <Form role="set-preferences">
           <select

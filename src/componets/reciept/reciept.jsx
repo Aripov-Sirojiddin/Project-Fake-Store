@@ -23,7 +23,7 @@ export default function Reciept({ className, totalPrice }) {
             <p>Shipping </p> <p>$10.99</p>
           </div>
           <div className={styles.horizontalContainer}>
-            <p>Estimated delivery </p> <p>2-3 weeks</p>
+            <p>Estimated delivery </p> <p>5 minutes</p>
           </div>
           <hr />
           <div className={styles.horizontalContainer}>

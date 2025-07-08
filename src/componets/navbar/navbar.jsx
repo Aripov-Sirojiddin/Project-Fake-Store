@@ -49,7 +49,7 @@ export default function Navbar({ cart }) {
     search = e.target.value;
   }
   return (
-    <div className={`${styles.container} ${styles.gradientBackground}`}>
+    <div id="navbar" className={`${styles.sticky} ${styles.container} ${styles.gradientBackground}`}>
       <div className={styles.container}>
         <Link
           to={location.pathname === "/" ? location : "/"}
