@@ -1,0 +1,66 @@
+.horizontalContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5vw;
+}
+
+.container {
+  height: fit-content;
+  font-size: x-large;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem 1.5rem;
+  margin: 2rem;
+  box-shadow: 5px 10px 10px 5px rgb(241, 218, 247);
+  animation: boxShadowAnimation 10s infinite;
+}
+
+.button {
+  color: white;
+  background: linear-gradient(
+    -45deg,
+    cyan,
+    rgb(230, 129, 250),
+    rgb(80, 240, 255)
+  );
+  width: 100%;
+  border: none;
+  font-size: inherit;
+  font-weight: bold;
+  padding-block: 1rem;
+  border-radius: 1rem;
+  background-size: 300% 300%;
+  animation: buttonAnimation 10s infinite;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes boxShadowAnimation {
+  0% {
+    box-shadow: 5px 5px 5px 5px rgb(195, 238, 255);
+  }
+  50% {
+    box-shadow: 5px 10px 10px 5px rgb(241, 218, 247);
+  }
+  75% {
+    box-shadow: 5px 5px 5px 5px rgb(237, 212, 255);
+  }
+  100%{
+    box-shadow: 5px 5px 5px 5px rgb(195, 238, 255);
+  }
+}
+@keyframes buttonAnimation {
+  0% {
+    background-position: 0% 25%;
+  }
+  50% {
+    background-position: 25% 50%;
+  }
+  100% {
+    background-position: 0% 25%;
+  }
+}

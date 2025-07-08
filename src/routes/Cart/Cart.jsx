@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 import ProductCard from "../../componets/productCard/productCard";
 import Reciept from "../../componets/reciept/reciept";
+import styles from "./Cart.module.css";
 
 export default function Cart({}) {
   const { cart, setCart } = useOutletContext();
@@ -20,9 +21,11 @@ export default function Cart({}) {
   }
 
   return (
-    <div>
-      {productsView}
-      <Reciept totalPrice={totalPrice} />
+    <div className={styles.horizontalContainer}>
+      <div>
+        {productsView}
+      </div>
+      <Reciept className={styles.fixed} totalPrice={totalPrice} />
     </div>
   );
 }
