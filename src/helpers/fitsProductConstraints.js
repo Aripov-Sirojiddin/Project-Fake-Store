@@ -12,6 +12,8 @@ export default function fitsProductConstraints(product) {
     );
   }
   function fitsRating(minRating = 0, maxRating = 5) {
+    console.log(Math.round(product.rating.rate))
+    console.log(maxRating)
     return minRating < Math.round(product.rating.rate) &&  Math.round(product.rating.rate) <= maxRating;
   }
   return {

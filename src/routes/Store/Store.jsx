@@ -16,7 +16,7 @@ export async function loader({ request }) {
   const search = url.searchParams.get("search");
   const minRating = url.searchParams.get("minRating");
   const maxRating = url.searchParams.get("maxRating");
-  return { category, search, minRating };
+  return { category, search, minRating, maxRating };
 }
 
 export default function Store() {
