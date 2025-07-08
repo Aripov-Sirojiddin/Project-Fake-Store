@@ -10,6 +10,7 @@ import { useState } from "react";
 export default function Sidebar(props) {
   const { category, search } = useRouteLoaderData("store");
   const [minRating, setMinRating] = useState(0);
+  const [maxRating, setMaxRating] = useState(0);
 
   const submit = useSubmit();
   const location = useLocation();
@@ -27,25 +28,44 @@ export default function Sidebar(props) {
       </option>
     );
   }
-  function setRating(rating) {
-    if (minRating === rating) {
-      setMinRating(rating - 1);
-    } else {
-      setMinRating(rating);
-    }
+
+  function setRating(rating, currentRating, setRating) {
+    const minOrMax = setRating == setMinRating ? "minRating" : "maxRating";
     const params = new URLSearchParams(location.search);
-    params.set("minRating", rating);
+
+    if (currentRating == rating) {
+      setRating(rating - 1);
+      params.set(minOrMax, rating - 1);
+    } else {
+      setRating(rating);
+      params.set(minOrMax, rating);
+    }
     submit(params);
   }
+
   function handleSelectCategory(e) {
     const params = new URLSearchParams(location.search);
     params.set("category", e.target.value);
     submit(params);
   }
-  const ratingStars = [1, 2, 3, 4, 5].map((rating) => {
+  const minRatingStars = [1, 2, 3, 4, 5].map((rating) => {
     return (
-      <p tabIndex="0" onClick={() => setRating(rating)}>
+      <p
+        tabIndex="0"
+        onClick={() => setRating(rating, minRating, setMinRating)}
+      >
         {rating <= minRating ? "★" : "☆"}
+      </p>
+    );
+  });
+
+  const maxRatingStars = [1, 2, 3, 4, 5].map((rating) => {
+    return (
+      <p
+        tabIndex="0"
+        onClick={() => setRating(rating, maxRating, setMaxRating)}
+      >
+        {rating <= maxRating ? "★" : "☆"}
       </p>
     );
   });
@@ -63,8 +83,13 @@ export default function Sidebar(props) {
             {options}
           </select>
         </Form>
+        <h3 tabIndex="0">Min Rating</h3>
         <div className={`${styles.rating} ${styles.horizontalContainer}`}>
-          {ratingStars}
+          {minRatingStars}
+        </div>
+        <h3 tabIndex="0">Max Rating</h3>
+        <div className={`${styles.rating} ${styles.horizontalContainer}`}>
+          {maxRatingStars}
         </div>
       </div>
     </div>
