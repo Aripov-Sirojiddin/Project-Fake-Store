@@ -23,8 +23,14 @@ export default function Cart({}) {
   return (
     <div className={styles.horizontalContainer}>
       <div className={styles.container}>
-        <h1 style={{marginBlockStart: "0"}}>Products in Cart</h1>
-        <div className={styles.products}>{productsView}</div>
+        {totalPrice === 0 ? (
+          <p>Nothing here but some lint and dust...</p>
+        ) : (
+          <>
+            <h1 style={{ marginBlockStart: "0" }}>Products in Cart</h1>
+            <div className={styles.products}>{productsView}</div>
+          </>
+        )}
       </div>
       <Reciept className={styles.fixed} totalPrice={totalPrice} />
     </div>
