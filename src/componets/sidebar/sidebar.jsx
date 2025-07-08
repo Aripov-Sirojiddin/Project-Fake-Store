@@ -42,7 +42,7 @@ export default function Sidebar(props) {
       newPriceRange[0] = params.get("minPrice");
     }
     if (params.get("maxPrice")) {
-      newPriceRange[1g] = params.get("maxPrice");
+      newPriceRange[1] = params.get("maxPrice");
     }
     setPriceRange(newPriceRange);
 
