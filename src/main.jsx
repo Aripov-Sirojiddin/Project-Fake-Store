@@ -40,7 +40,7 @@ const router = createBrowserRouter([
 document.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     const focusedElement = document.activeElement;
-    if (focusedElement) {
+    if (focusedElement && focusedElement.id != "search") {
       event.preventDefault();
       focusedElement.click();
     }
