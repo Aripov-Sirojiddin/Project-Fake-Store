@@ -23,9 +23,14 @@ export default function fitsProductConstraints(product) {
       return false;
     }
   }
+
+  function fitsPriceRange(minPrice = 0, maxPrice = 1000) {
+    return minPrice < product.price && product.price < maxPrice;
+  }
   return {
     fitsCategory,
     fitsSearch,
     fitsRating,
+    fitsPriceRange,
   };
 }
