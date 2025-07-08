@@ -28,7 +28,7 @@ export default function Store() {
 
   const submit = useSubmit();
   const location = useLocation();
-  const { category, search, minRating, maxRating } = useLoaderData();
+  const { category, search, minRating, maxRating, minPrice, maxPrice } = useLoaderData();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -71,7 +71,8 @@ export default function Store() {
       productFilter.fitsRating(
         minRating ? minRating : undefined,
         maxRating ? maxRating : undefined
-      )
+      ) &&
+      productFilter.fitsPriceRange(minPrice, maxPrice)
     ) {
       filteredProducts.push(
         <ProductCard
@@ -94,7 +95,8 @@ export default function Store() {
           <p>Loading...</p>
         ) : (
           <p>
-            No products found. Try adjusting your filters/product specifications.
+            No products found. Try adjusting your filters/product
+            specifications.
           </p>
         )}
       </div>
