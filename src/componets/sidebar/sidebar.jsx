@@ -45,7 +45,6 @@ export default function Sidebar(props) {
       newPriceRange[1] = params.get("maxPrice");
     }
     setPriceRange(newPriceRange);
-
   }, [location]);
   function setRating(rating, currentRating, setRating) {
     const minOrMax = setRating == setMinRating ? "minRating" : "maxRating";
@@ -138,19 +137,18 @@ export default function Sidebar(props) {
 
         <h3 tabIndex="0">Price Range</h3>
         <div className={styles.horizontalContainer}>
-          <p className={styles.smaller}>${priceRange[0]}</p>
-          <RangeSlider
-            className={styles.rangeSlider}
-            min={0}
-            max={1000}
-            step={1}
-            value={priceRange}
-            defaultValue={[0, 1000]}
-            onInput={handleSelectPriceRange}
-            onThumbDragEnd={updateLink}
-          />
-          <p className={styles.smaller}>${priceRange[1]}</p>
+          <p className={styles.smaller}>From ${priceRange[0]} to ${priceRange[1]}</p>
         </div>
+        <RangeSlider
+          className={styles.rangeSlider}
+          min={0}
+          max={1000}
+          step={1}
+          value={priceRange}
+          defaultValue={[0, 1000]}
+          onInput={handleSelectPriceRange}
+          onThumbDragEnd={updateLink}
+        />
       </div>
     </div>
   );
