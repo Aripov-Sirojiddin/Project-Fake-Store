@@ -6,7 +6,7 @@ export default function Reciept({ className, totalPrice }) {
     <div className={`${className} ${styles.container}`}>
       {totalPrice > 0 ? (
         <>
-          <h2 style={{ textAlign: "center" }}>Cart Overview</h2>
+          <h2 style={{ textAlign: "center" }}>Price Overview</h2>
           <div className={styles.horizontalContainer}>
             <p>Products total </p> <p>${totalPrice}</p>
           </div>
