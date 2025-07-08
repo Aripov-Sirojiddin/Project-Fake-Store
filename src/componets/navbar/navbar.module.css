@@ -7,12 +7,14 @@
 
 .gradientBackground {
   background: linear-gradient(
-    -45deg,
-    cyan,
-    rgb(230, 129, 250),
-    rgb(80, 240, 255)
+    -70deg,
+    #ff83ee,
+    rgb(255, 131, 238),
+    rgb(20, 235, 255),
+    rgb(255, 65, 163)
   );
   background-size: 300% 300%;
+  animation: gradientAnimation 15s infinite;
 }
 .container {
   display: flex;
@@ -34,7 +36,7 @@
   background: white;
   font-size: x-large;
   height: 100%;
-  border: 1px solid rgb(210, 210, 210);
+  border: none;
   padding: 5px 1rem 5px;
   width: 10vw;
   transition: width 0.2s ease-in-out;
@@ -70,4 +72,16 @@
 
 .bagIconDiv {
   margin-inline-end: 3rem;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 25%;
+  }
+  50% {
+    background-position: 25% 50%;
+  }
+  100% {
+    background-position: 0% 25%;
+  }
 }
