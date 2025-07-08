@@ -66,7 +66,10 @@ export default function Store() {
     if (
       (category === "all" || productFilter.fitsCategory(category)) &&
       productFilter.fitsSearch(search) &&
-      productFilter.fitsRating(minRating, maxRating)
+      productFilter.fitsRating(
+        minRating ? minRating : undefined,
+        maxRating ? maxRating : undefined
+      )
     ) {
       filteredProducts.push(
         <ProductCard
