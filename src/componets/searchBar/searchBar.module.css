@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .container input{
   border-radius: 5rem;
   flex: 1;
@@ -6,9 +11,9 @@
   height: 100%;
   border: none;
   padding: 5px 1rem 5px;
-  width: 10vw;
+  width: 10rem;
   transition: width 0.2s ease-in-out;
 }
 .container input:focus {
-  width: 50vw;
+  width: 40rem;
 }

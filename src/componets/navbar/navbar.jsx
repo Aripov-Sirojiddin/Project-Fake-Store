@@ -1,4 +1,4 @@
-import { Form, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 import bagIcon from "../../../public/bag.svg";
@@ -32,7 +32,7 @@ export default function Navbar({ cart }) {
         </Link>
       </div>
       <div className={styles.container}>
-        {location.pathname !== "/" && <SearchBar />}
+        <SearchBar />
         <Link
           to={location.pathname === "/cart" ? location : "/cart"}
           className={styles.bagIconDiv}

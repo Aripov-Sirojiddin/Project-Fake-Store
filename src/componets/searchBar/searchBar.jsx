@@ -2,7 +2,7 @@ import { Form, useLocation, useSubmit } from "react-router-dom";
 import styles from "./searchBar.module.css";
 import { useEffect } from "react";
 
-export default function SearchBar({}) {
+export default function SearchBar({style}) {
   const location = useLocation();
   const submit = useSubmit();
   let search = "";
