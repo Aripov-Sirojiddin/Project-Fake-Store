@@ -2,6 +2,8 @@ import { useLoaderData, useOutletContext } from "react-router-dom";
 import styles from "./ProductPage.module.css";
 import AddRemoveItemBtn from "../../componets/addRemoveItemBtn/addRemoveItemBtn";
 import getStars from "../../helpers/getStars.js";
+import { useContext } from "react";
+import { ShopContext } from "../../App.jsx";
 
 export async function loader({ params }) {
   const productData = await fetch(
@@ -21,7 +23,7 @@ export async function loader({ params }) {
 }
 
 export default function ProductPage({}) {
-  const { cart, setCart } = useOutletContext();
+  const { cart, setCart } = useContext(ShopContext);
   const { productData } = useLoaderData();
 
   return (

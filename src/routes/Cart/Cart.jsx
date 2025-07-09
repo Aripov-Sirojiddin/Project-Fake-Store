@@ -1,10 +1,11 @@
-import { useOutletContext } from "react-router-dom";
 import ProductCard from "../../componets/productCard/productCard";
 import Reciept from "../../componets/reciept/reciept";
 import styles from "./Cart.module.css";
+import { useContext } from "react";
+import { ShopContext } from "../../App";
 
 export default function Cart({}) {
-  const { cart, setCart } = useOutletContext();
+  const { cart, setCart } = useContext(ShopContext);
   const productsView = [];
   let totalPrice = 0;
   for (const productId in cart) {

@@ -1,0 +1,25 @@
+.bagIcon {
+  fill: white;
+  max-width: 6ex;
+  margin: 0;
+}
+
+.bagIconDiv {
+  margin-inline-end: 3rem;
+}
+
+.itemCount {
+  background: red;
+  color: white;
+  font-size: medium;
+  padding: 0.5vh 0.6vw 0.5vh;
+  border-radius: 1vw;
+  font-size: 2ex;
+  font-weight: bold;
+  margin: 0;
+  width: fit-content;
+  transform: translate(3rem, 1rem);
+}
+.itemCountZero {
+  background: rgb(0, 0, 0);
+}

@@ -1,8 +1,10 @@
 import { Link, useOutletContext } from "react-router-dom";
 import styles from "./reciept.module.css";
+import { useContext } from "react";
+import { ShopContext } from "../../App";
 
 export default function Reciept({ className, totalPrice }) {
-  const { cart, setCart } = useOutletContext();
+  const { cart, setCart } = useContext(ShopContext);
   function handlePlaceOrder() {
     setCart({});
     sessionStorage.removeItem("incart");
@@ -29,7 +31,9 @@ export default function Reciept({ className, totalPrice }) {
           <div className={styles.horizontalContainer}>
             <h3>Total </h3> <p>${(totalPrice * 1.06 + 10.99).toFixed(2)}</p>
           </div>
-          <button className={styles.button} onClick={handlePlaceOrder}>Place Order</button>
+          <button className={styles.button} onClick={handlePlaceOrder}>
+            Place Order
+          </button>
         </>
       ) : (
         <>

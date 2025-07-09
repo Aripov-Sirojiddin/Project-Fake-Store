@@ -2,30 +2,39 @@ import styles from "./App.module.css";
 import Navbar from "./componets/navbar/navbar";
 import Footer from "./componets/footer/footer";
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+export const ShopContext = createContext({
+  cart: {},
+  setCart: () => {},
+  products: [],
+  setProducts: () => {},
+});
 
 function App() {
   const [cart, setCart] = useState({});
+  const [products, setProducts] = useState({});
 
   useEffect(() => {
     // Set main offset to account for the area under the navbar;
     const navbar = document.getElementById("navbar");
     const content = document.getElementById("content");
-
     content.style.marginBlockStart = `${navbar.offsetHeight}px`;
-
     //get saved items in cart
     const savedCart = JSON.parse(sessionStorage.getItem("incart"));
     setCart(savedCart);
   }, []);
+
   return (
-    <div className={styles.flexContainer}>
-      <Navbar cart={cart} />
-      <div id="content">
-        <Outlet context={{ cart, setCart }} />
+    <ShopContext.Provider value={{ cart, setCart, products, setProducts }}>
+      <div className={styles.flexContainer}>
+        <Navbar />
+        <div id="content">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </ShopContext.Provider>
   );
 }
 

@@ -1,14 +1,10 @@
 import styles from "./Store.module.css";
 import Sidebar from "../../componets/sidebar/sidebar.jsx";
 import fitsProductConstraints from "../../helpers/fitsProductConstraints.js";
-import { useEffect, useState } from "react";
-import {
-  useLoaderData,
-  useLocation,
-  useOutletContext,
-  useSubmit,
-} from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useLoaderData, useLocation, useSubmit } from "react-router-dom";
 import ProductCard from "../../componets/productCard/productCard.jsx";
+import { ShopContext } from "../../App.jsx";
 
 export async function loader({ request }) {
   const url = new URL(request.url);
@@ -22,8 +18,7 @@ export async function loader({ request }) {
 }
 
 export default function Store() {
-  const { cart, setCart } = useOutletContext();
-  const [products, setProducts] = useState([]);
+  const { cart, setCart, products, setProducts } = useContext(ShopContext);
   const [categories, setCategories] = useState([]);
 
   const submit = useSubmit();
@@ -43,7 +38,6 @@ export default function Store() {
       })
       .then((data) => {
         setProducts(data);
-
         const categoriesSet = new Set([]);
         categoriesSet.add("all");
         for (let i = 0; i < data.length; i++) {
@@ -73,12 +67,7 @@ export default function Store() {
       productFilter.fitsPriceRange(minPrice, maxPrice)
     ) {
       filteredProducts.push(
-        <ProductCard
-          key={products[i].id}
-          productData={products[i]}
-          cart={cart}
-          setCart={setCart}
-        />
+        <ProductCard key={products[i].id} productData={products[i]} />
       );
     }
   }

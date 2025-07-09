@@ -1,16 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
-import bagIcon from "../../../public/bag.svg";
 import SearchBar from "../searchBar/searchBar";
+import BagIcon from "../bagIcon/bagIcon";
 
 export default function Navbar({ cart }) {
   const location = useLocation();
 
-  let itemsInCartCount = 0;
-  if (cart) {
-    itemsInCartCount = Object.keys(cart).length;
-  }
 
   let category = "";
   useEffect(() => {
@@ -33,26 +29,7 @@ export default function Navbar({ cart }) {
       </div>
       <div className={styles.container}>
         <SearchBar />
-        <Link
-          to={location.pathname === "/cart" ? location : "/cart"}
-          className={styles.bagIconDiv}
-        >
-          <div>
-            <p
-              className={`${styles.itemCount} ${
-                itemsInCartCount === 0 ? styles.itemCountZero : ""
-              }`}
-            >
-              {itemsInCartCount}
-            </p>
-
-            <img
-              src={bagIcon}
-              className={styles.bagIcon}
-              alt="image icon of a bag"
-            />
-          </div>
-        </Link>
+        <BagIcon />
       </div>
     </div>
   );

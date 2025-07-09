@@ -2,9 +2,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "./productCard.module.css";
 import AddRemoveItemBtn from "../addRemoveItemBtn/addRemoveItemBtn";
 import getStars from "../../helpers/getStars";
+import { useContext } from "react";
+import { ShopContext } from "../../App";
 
-export default function ProductCard({ productData, cart, setCart }) {
+export default function ProductCard({ productData }) {
   const navigate = useNavigate();
+  const { cart, setCart } = useContext(ShopContext);
 
   function openProduct() {
     navigate(`/product/${productData.id}`, { replace: false });
@@ -33,9 +36,13 @@ export default function ProductCard({ productData, cart, setCart }) {
                 {getStars(productData.rating.rate)}
               </span>
             </p>
-            <p tabIndex="0"
+            <p
+              tabIndex="0"
               aria-current={`Price ${productData.price}`}
-              className={styles.priceTag}>${productData.price}</p>
+              className={styles.priceTag}
+            >
+              ${productData.price}
+            </p>
           </div>
           <AddRemoveItemBtn
             productData={productData}
