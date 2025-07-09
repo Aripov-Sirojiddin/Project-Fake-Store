@@ -8,9 +8,7 @@
   align-items: center;
   justify-content: center;
 }
-.content {
-  padding: 2rem;
-}
+
 .title {
   padding: 0.5rem 2rem 0.5rem;
   background-color: rgba(0, 0, 0, 0.776);
@@ -36,4 +34,13 @@
   gap: 3.5rem;
   grid-template-columns: 1fr;
   grid-template-rows: min-content;
+}
+.content h1{
+  padding: 2rem 2rem 0;
+}
+.horizontalContainer {
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  overflow-x: scroll;
 }
