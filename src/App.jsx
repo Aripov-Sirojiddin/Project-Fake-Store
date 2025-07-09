@@ -7,13 +7,10 @@ import { createContext, useEffect, useState } from "react";
 export const ShopContext = createContext({
   cart: {},
   setCart: () => {},
-  products: [],
-  setProducts: () => {},
 });
 
 function App() {
   const [cart, setCart] = useState({});
-  const [products, setProducts] = useState({});
 
   useEffect(() => {
     // Set main offset to account for the area under the navbar;
@@ -26,7 +23,9 @@ function App() {
   }, []);
 
   return (
-    <ShopContext.Provider value={{ cart, setCart, products, setProducts }}>
+    <ShopContext.Provider
+      value={{ cart, setCart }}
+    >
       <div className={styles.flexContainer}>
         <Navbar />
         <div id="content">

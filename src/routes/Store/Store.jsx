@@ -18,7 +18,8 @@ export async function loader({ request }) {
 }
 
 export default function Store() {
-  const { cart, setCart, products, setProducts } = useContext(ShopContext);
+  const { cart, setCart } = useContext(ShopContext);
+  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
   const submit = useSubmit();
@@ -38,6 +39,7 @@ export default function Store() {
       })
       .then((data) => {
         setProducts(data);
+
         const categoriesSet = new Set([]);
         categoriesSet.add("all");
         for (let i = 0; i < data.length; i++) {
