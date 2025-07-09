@@ -1,53 +1,24 @@
-import {
-  Form,
-  Link,
-  useLocation,
-  useNavigate,
-  useSubmit,
-} from "react-router-dom";
+import { Form, Link, useLocation } from "react-router-dom";
 import styles from "./navbar.module.css";
 import { useEffect } from "react";
 import bagIcon from "../../../public/bag.svg";
+import SearchBar from "../searchBar/searchBar";
 
 export default function Navbar({ cart }) {
   const location = useLocation();
-  const submit = useSubmit();
 
   let itemsInCartCount = 0;
   if (cart) {
     itemsInCartCount = Object.keys(cart).length;
   }
 
-  let search = "";
   let category = "";
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     document.getElementById("search").value = params.get("search");
-    search = params.get("search");
     category = params.get("category");
   }, [location]);
 
-  function handleOnFocus(e) {
-    e.target.placeholder = "Looking for something specific?";
-  }
-
-  function handleOnBlur(e) {
-    e.target.placeholder = "Search...";
-  }
-
-  function handleSearch(e) {
-    e.preventDefault();
-    const params = new URLSearchParams(location.search);
-    if (search.length > 0) {
-      params.set("search", search.split(" ").join("+"));
-    } else {
-      params.delete("search");
-    }
-    submit(params, { action: "/store" });
-  }
-  function handleOnChange(e) {
-    search = e.target.value;
-  }
   return (
     <div
       id="navbar"
@@ -62,21 +33,7 @@ export default function Navbar({ cart }) {
         </Link>
       </div>
       <div className={styles.container}>
-        <div>
-          <Form role="search" onSubmit={handleSearch}>
-            <input
-              type="text"
-              style={{visibility: `${location.pathname == "/" ? "collapse": ""}`}}
-              id="search"
-              name="search"
-              onFocus={handleOnFocus}
-              onBlur={handleOnBlur}
-              onChange={handleOnChange}
-              placeholder="Search..."
-            />
-          </Form>
-        </div>
-
+        <SearchBar />
         <Link
           to={location.pathname === "/cart" ? location : "/cart"}
           className={styles.bagIconDiv}

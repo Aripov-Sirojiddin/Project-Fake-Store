@@ -1,0 +1,14 @@
+.container input{
+  border-radius: 5rem;
+  flex: 1;
+  background: white;
+  font-size: x-large;
+  height: 100%;
+  border: none;
+  padding: 5px 1rem 5px;
+  width: 10vw;
+  transition: width 0.2s ease-in-out;
+}
+.container input:focus {
+  width: 50vw;
+}
