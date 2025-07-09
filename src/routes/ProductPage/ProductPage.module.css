@@ -13,6 +13,7 @@
 .largeImg{
   --img-size: 40rem;
   object-fit: contain;
+  padding-inline: 3rem 1rem;
   min-width: var(--img-size);
   max-width: var(--img-size);
   min-height: var(--img-size);
