@@ -43,26 +43,21 @@ export default function Navbar({ cart }) {
     } else {
       params.delete("search");
     }
-    submit(params, {action: "/store"});
+    submit(params, { action: "/store" });
   }
   function handleOnChange(e) {
     search = e.target.value;
   }
   return (
-    <div id="navbar" className={`${styles.sticky} ${styles.container} ${styles.gradientBackground}`}>
+    <div
+      id="navbar"
+      className={`${styles.sticky} ${styles.container} ${styles.gradientBackground}`}
+    >
       <div className={styles.container}>
-        <Link
-          to={location.pathname === "/" ? location : "/"}
-          className={`${styles.title} ${
-            location.pathname === "/" ? styles.selected : ""
-          }`}
-        >
+        <Link to={"/"} className={styles.title}>
           <h1>Fake Store</h1>
         </Link>
-        <Link
-          to={location.pathname === "/store" ? location : "/store"}
-          className={location.pathname === "/store" ? styles.selected : ""}
-        >
+        <Link to={location.pathname === "/store" ? location : "/store"}>
           <h2>Our Products</h2>
         </Link>
       </div>
@@ -71,6 +66,7 @@ export default function Navbar({ cart }) {
           <Form role="search" onSubmit={handleSearch}>
             <input
               type="text"
+              style={{visibility: `${location.pathname == "/" ? "collapse": ""}`}}
               id="search"
               name="search"
               onFocus={handleOnFocus}
