@@ -36,7 +36,13 @@
   grid-template-rows: min-content;
 }
 .content h1{
+  margin: 0;
   padding: 2rem 2rem 0;
+}
+
+.content h1 + p {
+  padding-inline-start: 2rem;
+  padding-block-end: 2rem;
 }
 .horizontalContainer {
   padding: 2rem;
