@@ -20,6 +20,10 @@
   border-radius: 1rem;
   padding: 0.5rem;
 }
+.container a {
+  text-decoration: none;
+  color: black;
+}
 .container .title:hover {
   text-decoration: underline;
   cursor: pointer;
