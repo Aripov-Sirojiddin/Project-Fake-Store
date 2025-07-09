@@ -32,19 +32,13 @@ export default function ProductPage({}) {
       <div>
         <h1>{productData.title}</h1>
         <div className={`${styles.container} ${styles.ratingPrice}`}>
-          <p
-            tabIndex="0"
-            aria-current={`Rating ${productData.rating.rate}`}
-          >
+          <p tabIndex="0" aria-current={`Rating ${productData.rating.rate}`}>
             {productData.rating.rate}
             <span className={styles.stars}>
               {getStars(productData.rating.rate)}
             </span>
           </p>
-          <p
-            tabIndex="0"
-            aria-current={`Price ${productData.price}`}
-          >
+          <p tabIndex="0" aria-current={`Price ${productData.price}`}>
             ${productData.price}
           </p>
           <AddRemoveItemBtn
@@ -54,7 +48,9 @@ export default function ProductPage({}) {
           />
         </div>
         <h3 tabIndex="0">Description</h3>
-        <p tabIndex="0" style={{fontSize: "x-large"}}>{productData.description}</p>
+        <p tabIndex="0" style={{ fontSize: "x-large" }}>
+          {productData.description}
+        </p>
       </div>
     </div>
   );

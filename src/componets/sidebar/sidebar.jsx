@@ -114,10 +114,7 @@ export default function Sidebar(props) {
   });
 
   return (
-    <div
-      id="filters"
-      className={styles.container}
-    >
+    <div id="filters" className={styles.container}>
       <div>
         <Form role="set-preferences">
           <select
@@ -125,7 +122,7 @@ export default function Sidebar(props) {
             id="category"
             name="category"
             onChange={handleSelectCategory}
-            value={category}
+            value={category ? category : "all"}
           >
             {options}
           </select>
