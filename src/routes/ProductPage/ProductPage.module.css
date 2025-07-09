@@ -11,9 +11,9 @@
   margin: 0;
 }
 .largeImg{
-  --img-size: 40rem;
+  --img-size: 30rem;
   object-fit: contain;
-  padding-inline: 3rem 1rem;
+  padding: 5rem 1rem 5rem 3rem;
   min-width: var(--img-size);
   max-width: var(--img-size);
   min-height: var(--img-size);
