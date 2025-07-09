@@ -7,6 +7,16 @@
 .container * {
   font-size: large;
 }
+
+.container select {
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 2rem;
+  background: white;
+  text-align: center;
+  font-weight: bold;
+}
+
 .container h3 {
   margin-block-end: 0;
 }
