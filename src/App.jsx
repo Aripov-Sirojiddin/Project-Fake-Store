@@ -12,10 +12,10 @@ function App() {
     const navbar = document.getElementById("navbar");
     const content = document.getElementById("content");
     const filters = document.getElementById("filters");
-    const receipt = document.getElementById("receipt");
 
     content.style.marginBlockStart = `${navbar.offsetHeight}px`;
-    filters != null ? filters.style.paddingBlockStart = `${navbar.offsetHeight*1.5}px` : undefined;
+    if (filters != null)
+      filters.style.paddingBlockStart = `${navbar.offsetHeight * 1.5}px`;
 
     //get saved items in cart
     const savedCart = JSON.parse(sessionStorage.getItem("incart"));
