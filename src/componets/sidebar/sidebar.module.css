@@ -3,9 +3,10 @@
   position: sticky;
   top: 7rem;
   align-self: flex-start;
+  font-size: 5vh;
 }
 .container * {
-  font-size: large;
+  font-size: 3vh;
 }
 
 .container select {
@@ -22,15 +23,16 @@
 }
 .horizontalContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 1rem;
   align-items: center;
 }
 .horizontalContainer .smaller {
   font-size: medium;
 }
 .rating * {
+  font-size: 150%;
   margin: 0;
-  font-size: xx-large;
 }
 .rating:hover {
   cursor: pointer;
