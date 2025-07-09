@@ -6,6 +6,7 @@ import { ShopContext } from "../../App";
 export default function Reciept({ className, totalPrice }) {
   const { cart, setCart } = useContext(ShopContext);
   function handlePlaceOrder() {
+    alert("You placed a fake order!")
     setCart({});
     sessionStorage.removeItem("incart");
   }
