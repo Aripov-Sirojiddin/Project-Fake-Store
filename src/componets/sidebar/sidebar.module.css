@@ -1,7 +1,7 @@
 .container {
   padding: 1rem;
   position: sticky;
-  top: 0;
+  top: 7rem;
   align-self: flex-start;
 }
 .container * {

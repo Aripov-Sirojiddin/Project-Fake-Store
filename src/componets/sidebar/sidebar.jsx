@@ -22,9 +22,7 @@ export default function Sidebar(props) {
   const submit = useSubmit();
   const location = useLocation();
 
-  const [navbarHeight, setNavbarHeight] = useState(0);
   useEffect(() => {
-    setNavbarHeight(document.getElementById("navbar").offsetHeight * 1.5);
     const params = new URLSearchParams(location.search);
     if (!params) {
       return;
@@ -118,9 +116,6 @@ export default function Sidebar(props) {
   return (
     <div
       id="filters"
-      style={{
-        paddingBlockStart: navbarHeight,
-      }}
       className={styles.container}
     >
       <div>
