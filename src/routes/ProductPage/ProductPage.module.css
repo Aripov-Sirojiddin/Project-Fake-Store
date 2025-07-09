@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  gap: 2rem;
 }
 .ratingPrice {
   align-items: center;
