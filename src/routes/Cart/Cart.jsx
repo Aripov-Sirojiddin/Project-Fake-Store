@@ -32,7 +32,7 @@ export default function Cart({}) {
           </>
         )}
       </div>
-      <Reciept className={styles.stickyReciept} totalPrice={totalPrice} />
+      <Reciept totalPrice={totalPrice} />
     </div>
   );
 }
