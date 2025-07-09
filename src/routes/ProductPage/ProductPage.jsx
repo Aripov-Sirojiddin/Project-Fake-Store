@@ -26,6 +26,18 @@ export default function ProductPage({}) {
   const { cart, setCart } = useContext(ShopContext);
   const { productData } = useLoaderData();
 
+  let history = sessionStorage.getItem("history");
+  history = history ? JSON.parse(history) : { products: [] };
+
+  history.products = history.products.filter(
+    (product) => product.id != productData.id
+  );
+  history.products.unshift(productData);
+  if (history.products.length > 10) {
+    history.products.pop();
+  }
+  sessionStorage.setItem("history", JSON.stringify(history));
+
   return (
     <div className={styles.container}>
       <img src={productData.image} className={styles.largeImg} />
