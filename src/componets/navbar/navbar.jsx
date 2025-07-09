@@ -15,7 +15,6 @@ export default function Navbar({ cart }) {
   let category = "";
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    document.getElementById("search").value = params.get("search");
     category = params.get("category");
   }, [location]);
 
@@ -33,7 +32,7 @@ export default function Navbar({ cart }) {
         </Link>
       </div>
       <div className={styles.container}>
-        <SearchBar />
+        {location.pathname !== "/" && <SearchBar />}
         <Link
           to={location.pathname === "/cart" ? location : "/cart"}
           className={styles.bagIconDiv}

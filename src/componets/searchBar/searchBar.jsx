@@ -10,6 +10,7 @@ export default function SearchBar({}) {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     search = params.get("search");
+    document.getElementById("search").value = params.get("search");
   }, [location]);
 
   function handleOnFocus(e) {
@@ -38,9 +39,6 @@ export default function SearchBar({}) {
       <Form role="search" onSubmit={handleSearch}>
         <input
           type="text"
-          style={{
-            visibility: `${location.pathname == "/" ? "collapse" : ""}`,
-          }}
           id="search"
           name="search"
           onFocus={handleOnFocus}
