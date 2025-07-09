@@ -7,7 +7,6 @@ export default function LandingPage({}) {
 
   const productsView = [];
   for (let i = 0; i < history.products.length; i++) {
-    console.log(history.products[i]);
     productsView.push(
       <ProductCard
         key={history.products[i].id}
