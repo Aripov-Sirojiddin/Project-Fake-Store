@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./productCard.module.css";
 import AddRemoveItemBtn from "../addRemoveItemBtn/addRemoveItemBtn";
 import getStars from "../../helpers/getStars";
@@ -6,24 +6,21 @@ import { useContext } from "react";
 import { ShopContext } from "../../App";
 
 export default function ProductCard({ productData }) {
-  const navigate = useNavigate();
   const { cart, setCart } = useContext(ShopContext);
 
-  function openProduct() {
-    navigate(`/product/${productData.id}`, { replace: false });
-  }
   return (
     <div tabIndex="0">
       <div className={styles.container}>
-        <img
-          tabIndex="0"
-          className={styles.productImg}
-          onClick={openProduct}
-          src={productData.image}
-        />
-        <p tabIndex="0" className={styles.title} onClick={openProduct}>
-          {productData.title}
-        </p>
+        <Link to={`/product/${productData.id}`}>
+          <img
+            tabIndex="0"
+            className={styles.productImg}
+            src={productData.image}
+          />
+          <p tabIndex="0" className={styles.title}>
+            {productData.title}
+          </p>
+        </Link>
         <div className={styles.horizontalContainer}>
           <div>
             <p
