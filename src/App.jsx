@@ -11,11 +11,8 @@ function App() {
     // Set main offset to account for the area under the navbar;
     const navbar = document.getElementById("navbar");
     const content = document.getElementById("content");
-    const filters = document.getElementById("filters");
 
     content.style.marginBlockStart = `${navbar.offsetHeight}px`;
-    if (filters != null)
-      filters.style.paddingBlockStart = `${navbar.offsetHeight * 1.5}px`;
 
     //get saved items in cart
     const savedCart = JSON.parse(sessionStorage.getItem("incart"));

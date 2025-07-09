@@ -22,7 +22,9 @@ export default function Sidebar(props) {
   const submit = useSubmit();
   const location = useLocation();
 
+  const [navbarHeight, setNavbarHeight] = useState(0);
   useEffect(() => {
+    setNavbarHeight(document.getElementById("navbar").offsetHeight * 1.5);
     const params = new URLSearchParams(location.search);
     if (!params) {
       return;
@@ -112,8 +114,15 @@ export default function Sidebar(props) {
       </p>
     );
   });
+
   return (
-    <div id="filters" className={styles.container}>
+    <div
+      id="filters"
+      style={{
+        paddingBlockStart: navbarHeight,
+      }}
+      className={styles.container}
+    >
       <div>
         <Form role="set-preferences">
           <select
@@ -137,7 +146,9 @@ export default function Sidebar(props) {
 
         <h3 tabIndex="0">Price Range</h3>
         <div className={styles.horizontalContainer}>
-          <p className={styles.smaller}>From ${priceRange[0]} to ${priceRange[1]}</p>
+          <p className={styles.smaller}>
+            From ${priceRange[0]} to ${priceRange[1]}
+          </p>
         </div>
         <RangeSlider
           className={styles.rangeSlider}
