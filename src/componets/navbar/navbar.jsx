@@ -20,10 +20,13 @@ export default function Navbar({ cart }) {
       className={`${styles.sticky} ${styles.container} ${styles.gradientBackground}`}
     >
       <div className={styles.container}>
-        <Link to={"/"} className={styles.title}>
+        <Link to={"/home"} className={styles.title}>
           <h1>Fake Store</h1>
         </Link>
-        <Link to={location.pathname === "/store" ? location : "/store"}>
+        <Link to={"/home"}>
+          <h2>Home</h2>
+        </Link>
+        <Link to={location.pathname === "/" ? location : "/"}>
           <h2>Our Products</h2>
         </Link>
       </div>
