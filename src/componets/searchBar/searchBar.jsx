@@ -29,7 +29,7 @@ export default function SearchBar({style}) {
     } else {
       params.delete("search");
     }
-    submit(params, { action: "/store" });
+    submit(params, { action: "/" });
   }
   function handleOnChange(e) {
     search = e.target.value;

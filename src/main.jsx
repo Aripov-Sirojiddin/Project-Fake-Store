@@ -16,11 +16,12 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true,
+        path: "/home",
         element: <LandingPage />,
       },
       {
-        path: "/store",
+        index: true,
+        path: "/",
         element: <Store />,
         id: "store",
         loader: storeLoader,
