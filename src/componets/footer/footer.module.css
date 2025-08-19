@@ -1,5 +1,4 @@
-
-.horizontalContainer{ 
+.horizontalContainer {
   display: flex;
   justify-content: center;
   gap: 5rem;
@@ -8,6 +7,7 @@
 .horizontalContainer h1 {
   align-self: center;
 }
+
 .container {
   color: white;
   background: black;
@@ -20,4 +20,8 @@
 }
 .container p {
   margin-block: 0.5rem;
+}
+.container p:hover {  
+  text-decoration: underline;
+  cursor: pointer;
 }

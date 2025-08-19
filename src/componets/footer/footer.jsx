@@ -1,5 +1,8 @@
 import styles from "./footer.module.css";
 export default function Footer({}) {
+  function placeholderAlert() {
+    alert("This is a placeholder link to mimic a complete web app.");
+  }
   return (
     <>
       <div className={styles.container}>
@@ -7,24 +10,24 @@ export default function Footer({}) {
           <h1>Fake Store</h1>
           <div>
             <h4>About Us</h4>
-            <p>Blog</p>
-            <p>Careers</p>
-            <p>Sell your items</p>
+            <p onClick={placeholderAlert}>Blog</p>
+            <p onClick={placeholderAlert}>Careers</p>
+            <p onClick={placeholderAlert}>Sell your items</p>
           </div>
           <div>
             <h4>Support</h4>
-            <p>Help</p>
-            <p>Delivery issues</p>
-            <p>Product help</p>
+            <p onClick={placeholderAlert}>Help</p>
+            <p onClick={placeholderAlert}>Delivery issues</p>
+            <p onClick={placeholderAlert}>Product help</p>
           </div>
           <div>
             <h4>Community</h4>
-            <p>Manufacturers</p>
-            <p>Designers</p>
-            <p>Testimonials</p>
+            <p onClick={placeholderAlert}>Manufacturers</p>
+            <p onClick={placeholderAlert}>Designers</p>
+            <p onClick={placeholderAlert}>Testimonials</p>
           </div>
         </div>
-        <p>© Copyright 2025 - Not a real company LLC</p>
+        <p onClick={placeholderAlert}>© Copyright 2025 - Not a real company LLC</p>
       </div>
     </>
   );
