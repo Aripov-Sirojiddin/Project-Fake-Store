@@ -1,7 +1,7 @@
 .container {
-  height: 90vh;
+  height: 75vh;
   background-image: url("../../../public/pexels-n-voitkevich-6214149.jpg");
-  background-position: 0% 35%;
+  background-position: 0% 38%;
   background-size: cover;
   display: flex;
   flex-direction: column;
